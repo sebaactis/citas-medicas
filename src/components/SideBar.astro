@@ -1,0 +1,65 @@
+---
+import { Separator } from "@/components/ui/separator";
+import NavbarList from "./NavbarList.astro";
+import {
+    CalendarIcon,
+    DepartmentsIcon,
+    DoctorIcon,
+    EarningIcon,
+    HelpIcon,
+    HouseIcon,
+    MedicineIcon,
+    PatientsIcon,
+    SettingIcon,
+} from "./Icons";
+
+const items = [
+    {
+        icon: HouseIcon,
+        title: "Dashboard",
+    },
+    {
+        icon: CalendarIcon,
+        title: "Appointments",
+    },
+    {
+        icon: PatientsIcon,
+        title: "Patients",
+    },
+    {
+        icon: DoctorIcon,
+        title: "Doctors",
+    },
+    {
+        icon: DepartmentsIcon,
+        title: "Departaments",
+    },
+    {
+        icon: EarningIcon,
+        title: "Earnings",
+    },
+    {
+        icon: MedicineIcon,
+        title: "Medicine",
+    },
+];
+
+const itemsSetting = [
+    {
+        icon: SettingIcon,
+        title: "Settings",
+    },
+    {
+        icon: HelpIcon,
+        title: "Help",
+    },
+];
+---
+
+<aside class="bg-slate-200 w-64 h-screen flex flex-col gap-10 pt-10">
+    <NavbarList list={items} />
+
+    <Separator />
+
+    <NavbarList list={itemsSetting} />
+</aside>

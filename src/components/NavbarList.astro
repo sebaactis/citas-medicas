@@ -1,0 +1,29 @@
+---
+import type { ComponentType } from "react";
+
+interface Props {
+    list: Array<{ title: string; icon: ComponentType }>;
+}
+
+const { list } = Astro.props;
+---
+
+<ul class="flex flex-col px-5 gap-3">
+    {
+        list.map((item) => {
+            const IconComponent = item.icon;
+
+            return (
+                <a
+                    href="#"
+                    class="text-slate-600 text-md font-semibold px-4 py-3 transition-all rounded-full hover:bg-blue-300 hover:text-white"
+                >
+                    <li class="flex gap-2 items-center">
+                        <IconComponent />
+                        {item.title}
+                    </li>
+                </a>
+            );
+        })
+    }
+</ul>
