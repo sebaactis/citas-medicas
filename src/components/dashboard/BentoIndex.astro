@@ -1,11 +1,13 @@
 ---
 import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
 import CardTotals from "./CardTotals.astro";
+import AreaCharts from "./graphics/AreaCharts";
 import BarsChart from "./graphics/BarsChart";
+import { DoctorsTable } from "./graphics/DoctorsTable";
 import DonutsCharts from "./graphics/DonutsChart";
 ---
 
-<section class="grid grid-col-10 auto-rows-[15rem] gap-20 p-7">
+<section class="grid grid-col-10 gap-10 p-7">
     <article
         class="col-span-10 grid grid-cols-12 gap-3 items-center justify-items-center"
     >
@@ -34,16 +36,20 @@ import DonutsCharts from "./graphics/DonutsChart";
             title="Appointments"
         />
     </article>
-    <article class="col-span-10 grid grid-cols-12 gap-3">
-        <div class="col-span-7 bg-slate-200 rounded-md">
-            <BarsChart client:idle/>
+    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
+        <div class="col-span-9 bg-slate-200 rounded-md">
+            <BarsChart client:idle />
         </div>
-        <div class="col-span-5 bg-slate-200 rounded-md mr-12">
+        <div class="col-span-3 bg-slate-200 rounded-md flex flex-col gap-5">
             <DonutsCharts client:idle />
         </div>
     </article>
-    <article class="col-span-10 grid grid-cols-12">
-        <div class="col-span-5">1</div>
-        <div class="col-span-7">2</div>
+    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
+        <div class="col-span-6 bg-slate-200 rounded-md">
+            <AreaCharts client:idle />
+        </div>
+        <div class="col-span-6 bg-slate-200 rounded-md flex flex-col gap-5">
+            <DoctorsTable />
+        </div>
     </article>
 </section>
