@@ -1,0 +1,49 @@
+---
+import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
+import CardTotals from "./CardTotals.astro";
+import BarsChart from "./graphics/BarsChart";
+import DonutsCharts from "./graphics/DonutsChart";
+---
+
+<section class="grid grid-col-10 auto-rows-[15rem] gap-20 p-7">
+    <article
+        class="col-span-10 grid grid-cols-12 gap-3 items-center justify-items-center"
+    >
+        <CardTotals
+            class="col-span-3"
+            icon={DoctorCard}
+            count="800K"
+            title="Total Doctors"
+        />
+        <CardTotals
+            class="col-span-3"
+            icon={PersonCard}
+            count="500"
+            title="Total Patients"
+        />
+        <CardTotals
+            class="col-span-3"
+            icon={IconCard}
+            count="150K"
+            title="Earnings"
+        />
+        <CardTotals
+            class="col-span-3"
+            icon={CalendarCard}
+            count="100"
+            title="Appointments"
+        />
+    </article>
+    <article class="col-span-10 grid grid-cols-12 gap-3">
+        <div class="col-span-7 bg-slate-200 rounded-md">
+            <BarsChart client:idle/>
+        </div>
+        <div class="col-span-5 bg-slate-200 rounded-md mr-12">
+            <DonutsCharts client:idle />
+        </div>
+    </article>
+    <article class="col-span-10 grid grid-cols-12">
+        <div class="col-span-5">1</div>
+        <div class="col-span-7">2</div>
+    </article>
+</section>

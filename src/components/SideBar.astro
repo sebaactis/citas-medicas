@@ -17,30 +17,37 @@ const items = [
     {
         icon: HouseIcon,
         title: "Dashboard",
+        link: "/",
     },
     {
         icon: CalendarIcon,
         title: "Appointments",
+        link: "/appointments",
     },
     {
         icon: PatientsIcon,
         title: "Patients",
+        link: "/patients",
     },
     {
         icon: DoctorIcon,
         title: "Doctors",
+        link: "/doctors",
     },
     {
         icon: DepartmentsIcon,
-        title: "Departaments",
+        title: "Departments",
+        link: "/departments",
     },
     {
         icon: EarningIcon,
         title: "Earnings",
+        link: "/earnings",
     },
     {
         icon: MedicineIcon,
         title: "Medicine",
+        link: "/medicine",
     },
 ];
 
@@ -48,15 +55,17 @@ const itemsSetting = [
     {
         icon: SettingIcon,
         title: "Settings",
+        link: "/settings",
     },
     {
         icon: HelpIcon,
         title: "Help",
+        link: "/help",
     },
 ];
 ---
 
-<aside class="bg-slate-200 w-64 h-screen flex flex-col gap-10 pt-10">
+<aside class="bg-slate-200 w-80 h-screen flex flex-col gap-10 pt-10">
     <NavbarList list={items} />
 
     <Separator />

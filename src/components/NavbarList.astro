@@ -2,7 +2,7 @@
 import type { ComponentType } from "react";
 
 interface Props {
-    list: Array<{ title: string; icon: ComponentType }>;
+    list: Array<{ title: string; icon: ComponentType, link: string }>;
 }
 
 const { list } = Astro.props;
@@ -15,7 +15,7 @@ const { list } = Astro.props;
 
             return (
                 <a
-                    href="#"
+                    href={item.link}
                     class="text-slate-600 text-md font-semibold px-4 py-3 transition-all rounded-full hover:bg-blue-300 hover:text-white"
                 >
                     <li class="flex gap-2 items-center">

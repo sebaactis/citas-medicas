@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id           String        @id @default(uuid())
+  name         String
+  age          Int
+  email        String
+  ratings      Rating[]
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Doctor {
+  id           String     @id @default(uuid())
+  name         String
+  department   Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+
+  specialtie   Specialtie @relation(fields: [specialtieId], references: [id])
+  specialtieId String
+
+  ratings      Rating[]
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Department {
+  id      String   @id @default(uuid())
+  name    String
+  doctors Doctor[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Specialtie {
+  id      String   @id @default(uuid())
+  name    String
+  doctors Doctor[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Rating {
+  id     String @id @default(uuid())
+  rating Int
+
+  patient   Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  Doctor   Doctor @relation(fields: [doctorId], references: [id])
+  doctorId String
+}
+
+model Appointment {
+  id        String   @id @default(uuid())
+  date      DateTime
+  patient   Patient  @relation(fields: [patientId], references: [id])
+  patientId String
+
+  Doctor   Doctor @relation(fields: [doctorId], references: [id])
+  doctorId String
+}

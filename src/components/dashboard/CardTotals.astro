@@ -1,0 +1,21 @@
+---
+import type { ComponentType } from "react";
+
+interface Props {
+    icon: ComponentType;
+    count: string;
+    title: string;
+    class: string;
+}
+
+const { icon, count, title } = Astro.props;
+const IconComponent = icon;
+---
+
+<div
+    class=`${Astro.props.class} flex flex-col justify-center gap-4 p-8 w-[18rem] h-[13rem] bg-slate-200 rounded-md`
+>
+    <IconComponent />
+    <p class="text-3xl font-black">{count}</p>
+    <p class="text-xl">{title}</p>
+</div>
