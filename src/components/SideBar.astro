@@ -1,51 +1,40 @@
 ---
 import { Separator } from "@/components/ui/separator";
 import NavbarList from "./NavbarList.astro";
-import {
-    CalendarIcon,
-    DepartmentsIcon,
-    DoctorIcon,
-    EarningIcon,
-    HelpIcon,
-    HouseIcon,
-    MedicineIcon,
-    PatientsIcon,
-    SettingIcon,
-} from "./Icons";
 
 const items = [
     {
-        icon: HouseIcon,
+        icon: "HouseIcon",
         title: "Dashboard",
         link: "/",
     },
     {
-        icon: CalendarIcon,
+        icon: "CalendarIcon",
         title: "Appointments",
         link: "/appointments",
     },
     {
-        icon: PatientsIcon,
+        icon: "PatientsIcon",
         title: "Patients",
         link: "/patients",
     },
     {
-        icon: DoctorIcon,
+        icon: "DoctorIcon",
         title: "Doctors",
         link: "/doctors",
     },
     {
-        icon: DepartmentsIcon,
+        icon: "DepartmentsIcon",
         title: "Departments",
         link: "/departments",
     },
     {
-        icon: EarningIcon,
+        icon: "EarningIcon",
         title: "Earnings",
         link: "/earnings",
     },
     {
-        icon: MedicineIcon,
+        icon: "MedicineIcon",
         title: "Medicine",
         link: "/medicine",
     },
@@ -53,19 +42,19 @@ const items = [
 
 const itemsSetting = [
     {
-        icon: SettingIcon,
+        icon: "SettingIcon",
         title: "Settings",
         link: "/settings",
     },
     {
-        icon: HelpIcon,
+        icon: "HelpIcon",
         title: "Help",
         link: "/help",
     },
 ];
 ---
 
-<aside class="bg-slate-200 w-80 flex flex-col gap-10 pt-10">
+<aside class="bg-slate-200 max-w-80 flex flex-col gap-10 pt-10">
     <NavbarList list={items} />
     <Separator />
     <NavbarList list={itemsSetting} />

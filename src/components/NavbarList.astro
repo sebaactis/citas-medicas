@@ -1,18 +1,41 @@
 ---
 import type { ComponentType } from "react";
+import {
+    CalendarIcon,
+    DepartmentsIcon,
+    DoctorIcon,
+    EarningIcon,
+    HelpIcon,
+    HouseIcon,
+    MedicineIcon,
+    PatientsIcon,
+    SettingIcon,
+} from "./Icons";
+import { isTemplateExpression } from "typescript";
 
 interface Props {
-    list: Array<{ title: string; icon: ComponentType, link: string }>;
+    list: Array<{ title: string; icon: string; link: string }>;
+}
+
+export const IconsList = {
+    "CalendarIcon": CalendarIcon,
+    "DepartmentsIcon": DepartmentsIcon,
+    "DoctorIcon": DoctorIcon,
+    "EarningIcon": EarningIcon,
+    "HelpIcon": HelpIcon,
+    "HouseIcon": HouseIcon,
+    "MedicineIcon": MedicineIcon,
+    "PatientsIcon": PatientsIcon,
+    "SettingIcon": SettingIcon
 }
 
 const { list } = Astro.props;
 ---
 
-<ul class="flex flex-col px-5 gap-3">
+<ul class="flex flex-col px-6 gap-4">
     {
         list.map((item) => {
-            const IconComponent = item.icon;
-
+            const IconComponent = IconsList[item.icon as keyof typeof IconsList]
             return (
                 <a
                     href={item.link}
