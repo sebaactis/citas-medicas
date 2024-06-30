@@ -1,15 +1,21 @@
 ---
-import type { ComponentType } from "react";
+import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
 
+const Icons = {
+    "CalendarCard": CalendarCard,
+    "DoctorCard": DoctorCard,
+    "IconCard": IconCard,
+    "PersonCard": PersonCard
+}
 interface Props {
-    icon: ComponentType;
+    icon: keyof typeof Icons;
     count: string;
     title: string;
     class: string;
 }
 
 const { icon, count, title } = Astro.props;
-const IconComponent = icon;
+const IconComponent = Icons[icon];
 ---
 
 <div

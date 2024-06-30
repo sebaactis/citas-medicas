@@ -1,5 +1,4 @@
 ---
-import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
 import CardTotals from "./CardTotals.astro";
 import AreaCharts from "./graphics/AreaCharts";
 import BarsChart from "./graphics/BarsChart";
@@ -13,25 +12,25 @@ import DonutsCharts from "./graphics/DonutsChart";
     >
         <CardTotals
             class="col-span-3"
-            icon={DoctorCard}
+            icon="DoctorCard"
             count="800K"
             title="Total Doctors"
         />
         <CardTotals
             class="col-span-3"
-            icon={PersonCard}
+            icon="PersonCard"
             count="500"
             title="Total Patients"
         />
         <CardTotals
             class="col-span-3"
-            icon={IconCard}
+            icon="IconCard"
             count="150K"
             title="Earnings"
         />
         <CardTotals
             class="col-span-3"
-            icon={CalendarCard}
+            icon="CalendarCard"
             count="100"
             title="Appointments"
         />
