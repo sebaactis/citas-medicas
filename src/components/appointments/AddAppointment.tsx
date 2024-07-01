@@ -7,47 +7,78 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { formatDate } from "date-fns";
+
+const generateTimeOptions = () => {
+  const options = [];
+  for (let hour = 8; hour <= 18; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      options.push(<SelectItem key={time} value={time}>{time}</SelectItem>);
+    }
+  }
+  return options;
+};
+
+const temporalDoctors = ["Pedro Rodriguez", "Adriana Fernandez", "Santiago Messi"]
 
 
 export function AddAppointment() {
 
   const [date, setDate] = useState<Date | undefined>(new Date())
+  const [hour, setHour] = useState<any>();
+  const [doctor, setDoctor] = useState<any>();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formattedDate = date ? formatDate(date, "dd/MM/yyyy") : "";
+
+    const submit = {
+      formattedDate,
+      hour,
+      doctor
+    }
+
+    console.log(submit);
+  }
 
   return (
-    <section className="bg-slate-200 w-[650px] h-[800px] rounded-md">
-      <h3 className="text-center text-2xl font-bold my-10">Agregar una cita</h3>
-      <article className="flex flex-col gap-10 items-center">
+    <section className="bg-slate-200 w-[650px] h-[800px] rounded-md shadow-2xl shadow-slate-500">
+      <h3 className="text-center text-2xl font-bold my-10">Add appointment</h3>
+      <form className="flex flex-col gap-10 items-center" onSubmit={handleSubmit}>
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
           className="rounded-md border-2 border-slate-300 p-7"
         />
-        <div className="flex gap-2">
-          <Select>
+        <div className="flex gap-1">
+          <Select onValueChange={(value) => setHour(value)}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              {generateTimeOptions()}
             </SelectContent>
           </Select>
 
-          <Select>
+          <Select onValueChange={(value) => setDoctor(value)}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Doctor" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              {temporalDoctors.map((doctor) => {
+                return (
+                  <SelectItem key={doctor} value={doctor}>{doctor}</SelectItem>
+                )
+              })}
+
             </SelectContent>
           </Select>
         </div>
-        <button className="bg-green-300 px-3 py-2 rounded-md font-black hover:bg-green-400 transition-all" type="submit"> Confirm </button>
-      </article>
+        <button className="bg-green-500 px-4 py-2 rounded-md font-black hover:bg-green-400 transition-all" type="submit"> SUBMIT </button>
+      </form>
 
     </section>
   )
