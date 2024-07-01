@@ -1,36 +1,8 @@
 ---
-import {
-    CalendarIcon,
-    DepartmentsIcon,
-    DoctorIcon,
-    EarningIcon,
-    HelpIcon,
-    HouseIcon,
-    MedicineIcon,
-    PatientsIcon,
-    SettingIcon,
-} from "./Icons";
-
-export interface Item {
-    icon: keyof typeof Icons;
-    title: string;
-    link: string;
-}
+import { SideBarIcons, type Item } from '@/lib/types';
 
 interface Props {
     list: Item[];
-}
-
-export const Icons = {
-    "CalendarIcon": CalendarIcon,
-    "DepartmentsIcon": DepartmentsIcon,
-    "DoctorIcon": DoctorIcon,
-    "EarningIcon": EarningIcon,
-    "HelpIcon": HelpIcon,
-    "HouseIcon": HouseIcon,
-    "MedicineIcon": MedicineIcon,
-    "PatientsIcon": PatientsIcon,
-    "SettingIcon": SettingIcon
 }
 
 const { list } = Astro.props;
@@ -39,7 +11,7 @@ const { list } = Astro.props;
 <ul class="flex flex-col px-6 gap-4">
     {
         list.map((item) => {
-            const IconComponent = Icons[item.icon]
+            const IconComponent = SideBarIcons[item.icon]
             return (
                 <a
                     href={item.link}

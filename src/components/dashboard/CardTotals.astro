@@ -1,21 +1,21 @@
 ---
 import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
 
-const Icons = {
+const CardsIcons = {
     "CalendarCard": CalendarCard,
     "DoctorCard": DoctorCard,
     "IconCard": IconCard,
     "PersonCard": PersonCard
 }
 interface Props {
-    icon: keyof typeof Icons;
+    icon: keyof typeof CardsIcons;
     count: string;
     title: string;
     class: string;
 }
 
 const { icon, count, title } = Astro.props;
-const IconComponent = Icons[icon];
+const IconComponent = CardsIcons[icon];
 ---
 
 <div

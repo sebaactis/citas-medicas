@@ -1,8 +1,16 @@
 ---
 import "@/styles/globals.css";
 import Layout from "../layouts/Layout.astro";
+import { AppointmentsTable } from "@/components/appointments/AppointmentsTable";
+import { AddAppointment } from "@/components/appointments/AddAppointment";
 ---
 
 <Layout title="Medical dashboard">
-    Appointments
+    <section class="flex flex-col h-screen gap-12">
+        <h3 class="text-center font-bold text-3xl mt-5">Appointments</h3>
+        <div class="flex items-center gap-36">
+            <AppointmentsTable />
+            <AddAppointment client:idle />
+        </div>
+    </section>
 </Layout>
