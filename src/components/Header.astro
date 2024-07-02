@@ -1,5 +1,6 @@
 ---
 import MenuNavbar from "../components/navbar/MenuNavbar";
+import ThemeToggle from "./ThemeToggle";
 ---
 
 <nav class="bg-slate-100/90 dark:bg-slate-600/95 flex justify-between items-center gap-1">
@@ -7,7 +8,8 @@ import MenuNavbar from "../components/navbar/MenuNavbar";
         <img src="../../public/logo.png" class="w-20 ml-5" />
         <p class="font-bold text-red-400 text-3xl">Hospitality</p>
     </section>
-    <section class="flex items-center gap-5 mr-10">
+    <section class="flex items-center gap-5 mr-10 jus">
         <MenuNavbar client:load />
+        <ThemeToggle client:idle />
     </section>
 </nav>
