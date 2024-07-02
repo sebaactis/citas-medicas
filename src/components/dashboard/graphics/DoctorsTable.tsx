@@ -42,19 +42,19 @@ export function DoctorsTable() {
             <TableCaption>Top doctors rated</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[300px] font-bold text-xl">Doctor</TableHead>
-                    <TableHead className="w-[300px] font-bold text-xl">Speciality</TableHead>
-                    <TableHead className="w-[300px] font-bold text-xl">Department</TableHead>
-                    <TableHead className="text-right font-bold text-xl">Rated</TableHead>
+                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Doctor</TableHead>
+                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Speciality</TableHead>
+                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Department</TableHead>
+                    <TableHead className="text-right font-bold text-lg dark:text-white opacity-85">Rated</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {doctors.map((doctor) => (
                     <TableRow key={doctor.Doctor}>
-                        <TableCell className="text-base">{doctor.Doctor}</TableCell>
-                        <TableCell className="text-base">{doctor.Speciality}</TableCell>
-                        <TableCell className="text-base">{doctor.Department}</TableCell>
-                        <TableCell className="text-center text-base">{doctor.Rated}</TableCell>
+                        <TableCell className="text-base dark:text-white">{doctor.Doctor}</TableCell>
+                        <TableCell className="text-base dark:text-white">{doctor.Speciality}</TableCell>
+                        <TableCell className="text-base dark:text-white">{doctor.Department}</TableCell>
+                        <TableCell className="text-center text-base dark:text-white">{doctor.Rated}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

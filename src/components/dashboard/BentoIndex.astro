@@ -36,18 +36,22 @@ import DonutsCharts from "./graphics/DonutsChart";
         />
     </article>
     <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
-        <div class="col-span-9 bg-slate-200 rounded-md">
+        <div class="col-span-9 bg-slate-100/90 dark:bg-slate-600/95 rounded-md">
             <BarsChart client:idle />
         </div>
-        <div class="col-span-3 bg-slate-200 rounded-md flex flex-col gap-5">
+        <div
+            class="col-span-3 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-5"
+        >
             <DonutsCharts client:idle />
         </div>
     </article>
     <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
-        <div class="col-span-6 bg-slate-200 rounded-md">
+        <div class="col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md">
             <AreaCharts client:idle />
         </div>
-        <div class="col-span-6 bg-slate-200 rounded-md flex flex-col gap-5">
+        <div
+            class="col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-5"
+        >
             <DoctorsTable />
         </div>
     </article>

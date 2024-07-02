@@ -10,8 +10,9 @@ interface Props {
 const { title } = Astro.props;
 ---
 
+
 <!doctype html>
-<html lang="es" class="bg-slate-300">
+<html lang="es" >
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -21,7 +22,7 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body>
+	<body class="bg-slate-200 dark:bg-slate-800">
 		<Header />
 		<div>
 			<main class="flex">
@@ -31,32 +32,8 @@ const { title } = Astro.props;
 		</div>
 		<style is:global>
 			@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-			:root {
-				--accent: 136, 58, 234;
-				--accent-light: 224, 204, 250;
-				--accent-dark: 49, 10, 101;
-				--accent-gradient: linear-gradient(
-					45deg,
-					rgb(var(--accent)),
-					rgb(var(--accent-light)) 30%,
-					white 60%
-				);
-			}
 			html {
 				font-family: "Nunito", sans-serif;
-				background: #13151a;
-				background-size: 224px;
-			}
-			code {
-				font-family:
-					Menlo,
-					Monaco,
-					Lucida Console,
-					Liberation Mono,
-					DejaVu Sans Mono,
-					Bitstream Vera Sans Mono,
-					Courier New,
-					monospace;
 			}
 		</style>
 	</body>

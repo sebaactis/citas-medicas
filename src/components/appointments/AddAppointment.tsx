@@ -44,30 +44,30 @@ export function AddAppointment() {
   }
 
   return (
-    <section className="bg-slate-200 w-[650px] h-[800px] rounded-md shadow-2xl shadow-slate-500">
-      <h3 className="text-center text-2xl font-bold my-10">Add appointment</h3>
+    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[650px] h-[800px] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
+      <h3 className="text-center text-2xl font-bold my-10 dark:text-white">Add appointment</h3>
       <form className="flex flex-col gap-10 items-center" onSubmit={handleSubmit}>
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-md border-2 border-slate-300 p-7"
+          className="rounded-md border-2 border-slate-300 dark:border-slate-500 p-7"
         />
         <div className="flex gap-1">
           <Select onValueChange={(value) => setHour(value)}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="dark:text-white dark:bg-slate-700 dark:border-slate-500">
               {generateTimeOptions()}
             </SelectContent>
           </Select>
 
           <Select onValueChange={(value) => setDoctor(value)}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
               <SelectValue placeholder="Doctor" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="dark:text-white dark:bg-slate-700 dark:border-slate-500">
               {temporalDoctors.map((doctor) => {
                 return (
                   <SelectItem key={doctor} value={doctor}>{doctor}</SelectItem>
@@ -77,7 +77,7 @@ export function AddAppointment() {
             </SelectContent>
           </Select>
         </div>
-        <button className="bg-green-500 px-4 py-2 rounded-md font-black hover:bg-green-400 transition-all" type="submit"> SUBMIT </button>
+        <button className="bg-green-500 dark:bg-green-400 px-4 py-2 rounded-md font-black hover:bg-green-400 transition-all" type="submit"> SUBMIT </button>
       </form>
 
     </section>

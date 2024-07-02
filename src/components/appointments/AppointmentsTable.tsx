@@ -84,33 +84,33 @@ const citas = [
 
 export function AppointmentsTable() {
     return (
-        <section className="bg-slate-200 w-[650px] h-[800px] ml-20 rounded-md flex flex-col gap-10 p-3 shadow-2xl shadow-slate-500">
+        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[650px] h-[800px] ml-20 rounded-md flex flex-col gap-10 p-3 shadow-2xl dark:shadow-slate-700">
             <Table className="mt-10">
-                <h3 className="text-center text-2xl font-bold my-10">Appointments</h3>
+                <h3 className="text-center text-2xl font-bold my-10 dark:text-white">Appointments</h3>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="font-bold text-black text-center">Date ID</TableHead>
-                        <TableHead className="font-bold text-black text-center">Doctor</TableHead>
-                        <TableHead className="font-bold text-black text-center">Patient</TableHead>
-                        <TableHead className="font-bold text-black text-center">Deparment</TableHead>
-                        <TableHead className="font-bold text-black text-center">Cost</TableHead>
+                        <TableHead className="font-bold text-black dark:text-white text-center">Date ID</TableHead>
+                        <TableHead className="font-bold text-black dark:text-white text-center">Doctor</TableHead>
+                        <TableHead className="font-bold text-black dark:text-white text-center">Patient</TableHead>
+                        <TableHead className="font-bold text-black dark:text-white text-center">Deparment</TableHead>
+                        <TableHead className="font-bold text-black dark:text-white text-center">Cost</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {citas.map((cita) => (
                         <TableRow key={cita.dateID}>
-                            <TableCell className="text-center">{cita.dateID}</TableCell>
-                            <TableCell className="text-center">{cita.doctor}</TableCell>
-                            <TableCell className="text-center">{cita.patient}</TableCell>
-                            <TableCell className="text-center">{cita.deparment}</TableCell>
-                            <TableCell className="text-center">${cita.cost}</TableCell>
+                            <TableCell className="text-center dark:text-white">{cita.dateID}</TableCell>
+                            <TableCell className="text-center dark:text-white">{cita.doctor}</TableCell>
+                            <TableCell className="text-center dark:text-white">{cita.patient}</TableCell>
+                            <TableCell className="text-center dark:text-white">{cita.deparment}</TableCell>
+                            <TableCell className="text-center dark:text-white">${cita.cost}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
 
             <div>
-                <Pagination>
+                <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious href="#" />
