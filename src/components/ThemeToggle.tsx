@@ -24,7 +24,7 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-      <Switch onClick={toggleDarkMode} id="airplane-mode" />
+      <Switch checked={isDarkMode} onClick={toggleDarkMode} id="airplane-mode" />
   );
 };
 
