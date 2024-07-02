@@ -1,6 +1,20 @@
 ---
 import "@/styles/globals.css";
 import Layout from "../layouts/Layout.astro";
+import AddDoctor from "@/components/doctors/AddDoctor";
+import DoctorsList from "@/components/doctors/DoctorsList";
 ---
 
-<Layout title="Medical dashboard"> Index </Layout>
+<Layout title="Medical dashboard">
+    <section class="flex flex-col h-screen gap-12">
+        <h3
+            class="text-center font-bold text-3xl mt-5 dark:text-white uppercase"
+        >
+            Doctors
+        </h3>
+        <div class="flex items-center justify-center gap-36">
+            <AddDoctor client:idle/>
+            <DoctorsList />
+        </div>
+    </section>
+</Layout>

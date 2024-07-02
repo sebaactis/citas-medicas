@@ -1,6 +1,12 @@
 ---
 import MenuNavbar from "../components/navbar/MenuNavbar";
 import ThemeToggle from "./ThemeToggle";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 ---
 
 <nav
@@ -10,8 +16,11 @@ import ThemeToggle from "./ThemeToggle";
         <img src="../../public/logo.png" class="w-20 ml-5" />
         <p class="font-bold text-red-400 text-3xl">Hospitality</p>
     </section>
-    <section class="flex items-center gap-5 mr-10 jus">
+    <section class="flex items-center gap-5 mr-10">
         <MenuNavbar client:load />
-        <ThemeToggle client:only="react"  />
+        <ThemeToggle client:only="react" />
+        <div>
+            
+        </div>
     </section>
 </nav>
