@@ -1,4 +1,4 @@
-import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const data = [
     {
@@ -33,13 +33,15 @@ export default function Example() {
             <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 text-tremor-content-strong dark:text-dark-tremor-content-strong">
                 APPOINTMENTS EVOLUTION
             </h3>
-            <AreaChart width={450} height={250} data={data}
-                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <XAxis padding={{ left: 2  }} dataKey="date" />
-                <YAxis dataKey="Appointments"/>
-                <Tooltip />
-                <Area type="monotone" dataKey="Appointments" stroke="#006287" fillOpacity={1} fill="#006287" />
-            </AreaChart>
+            <ResponsiveContainer width="80%" height={300}>
+                <AreaChart data={data}>
+                    <XAxis padding={{ left: 2 }} dataKey="date" />
+                    <YAxis dataKey="Appointments" />
+                    <Tooltip />
+                    <CartesianGrid strokeDasharray="1 1" />
+                    <Area type="monotone" dataKey="Appointments" stroke="#9E4C4C" fill="none" strokeWidth={2} />
+                </AreaChart>
+            </ResponsiveContainer>
         </>
     );
 }

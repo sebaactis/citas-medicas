@@ -7,16 +7,17 @@ const data = [
   { name: 'Children', amount: 1253, },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#870000', '#FF5757', '#FF0000', '#9E4C4C'];
 
 const RADIAN = Math.PI / 180;
+
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+    <text x={x} y={y} fontSize="12px" fill="white" textAnchor="middle" dominantBaseline="central">
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );

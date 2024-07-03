@@ -44,18 +44,18 @@ export function AddAppointment() {
   }
 
   return (
-    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[650px] h-[800px] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
+    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[300px] 2xl:w-[650px] h-[550px] 2xl:h-[800px] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
       <h3 className="text-center text-2xl font-bold my-10 dark:text-white">Add appointment</h3>
-      <form className="flex flex-col gap-10 items-center" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-2 2xl:gap-10 items-center" onSubmit={handleSubmit}>
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-md border-2 border-slate-300 dark:border-slate-500 p-7"
+          className="rounded-md border-2 border-slate-300 dark:border-slate-500 p-[-15px] 2xl:p-7"
         />
-        <div className="flex gap-1">
+        <div className="flex flex-col 2xl:flex-row gap-1">
           <Select onValueChange={(value) => setHour(value)}>
-            <SelectTrigger className="w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
+            <SelectTrigger className="2xl:w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
             <SelectContent className="dark:text-white dark:bg-slate-700 dark:border-slate-500">
