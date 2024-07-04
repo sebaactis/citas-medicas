@@ -1,0 +1,122 @@
+---
+
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination"
+
+const earnings = [
+    {
+        id: 1,
+        reason: "Date medic",
+        date: "2015-05-23",
+        cost: 500,
+        deparment: "Cardilogy",
+        doctor: "Pedro Rodriguez"
+
+    },
+    
+    {
+        id: 2,
+        reason: "Date medic",
+        date: "2015-05-23",
+        cost: 500,
+        deparment: "Cardilogy",
+        doctor: "Pedro Rodriguez"
+
+    },
+    
+    {
+        id: 3,
+        reason: "Date medic",
+        date: "2015-05-23",
+        cost: 500,
+        deparment: "Cardilogy",
+        doctor: "Pedro Rodriguez"
+
+    },
+    
+    {
+        id: 4,
+        reason: "Date medic",
+        date: "2015-05-23",
+        cost: 500,
+        deparment: "Cardilogy",
+        doctor: "Pedro Rodriguez"
+
+    },
+    
+    {
+        id: 5,
+        reason: "Date medic",
+        date: "2015-05-23",
+        cost: 500,
+        deparment: "Cardilogy",
+        doctor: "Pedro Rodriguez"
+
+    },
+]
+
+---
+
+
+<Table className="mt-10">
+    <h3 class="text-center text-2xl font-bold my-10 dark:text-white">LAST EARNINGS</h3>
+    <TableHeader>
+        <TableRow>
+            <TableHead className="font-bold text-black dark:text-white text-center">Name</TableHead>
+            <TableHead className="font-bold text-black dark:text-white text-center">Cost</TableHead>
+            <TableHead className="font-bold text-black dark:text-white text-center">Date</TableHead>
+            <TableHead className="font-bold text-black dark:text-white text-center">Deparment</TableHead>
+            <TableHead className="font-bold text-black dark:text-white text-center">Doctor</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        {earnings.map((earning: any) => (
+            <TableRow key={earning.id}>
+                <TableCell className="text-center dark:text-white">{earning.reason}</TableCell>
+                <TableCell className="text-center dark:text-white">{earning.cost}</TableCell>
+                <TableCell className="text-center dark:text-white">{earning.date}</TableCell>
+                <TableCell className="text-center dark:text-white">{earning.deparment}</TableCell>
+                <TableCell className="text-center dark:text-white">{earning.doctor}</TableCell>
+            </TableRow>
+        ))}
+    </TableBody>
+</Table>
+
+<div class="mt-7">
+    <Pagination className="dark:text-white pb-5">
+        <PaginationContent>
+            <PaginationItem>
+                <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationLink href="#" isActive>
+                    2
+                </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationNext href="#" />
+            </PaginationItem>
+        </PaginationContent>
+    </Pagination>
+</div>

@@ -44,8 +44,8 @@ export function AddAppointment() {
   }
 
   return (
-    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[300px] 2xl:w-[650px] h-[550px] 2xl:h-[800px] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
-      <h3 className="text-center text-2xl font-bold my-10 dark:text-white">Add appointment</h3>
+    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] ml-10 md:ml-0 2xl:w-[40.625rem] h-[34.375rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
+      <h3 className="text-center text-2xl font-bold my-10 dark:text-white uppercase">Add appointment</h3>
       <form className="flex flex-col gap-2 2xl:gap-10 items-center" onSubmit={handleSubmit}>
         <Calendar
           mode="single"
@@ -55,7 +55,7 @@ export function AddAppointment() {
         />
         <div className="flex flex-col 2xl:flex-row gap-1">
           <Select onValueChange={(value) => setHour(value)}>
-            <SelectTrigger className="2xl:w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
+            <SelectTrigger className="2xl:w-[11.25rem] dark:text-white dark:bg-slate-700 dark:border-slate-500">
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
             <SelectContent className="dark:text-white dark:bg-slate-700 dark:border-slate-500">
@@ -64,7 +64,7 @@ export function AddAppointment() {
           </Select>
 
           <Select onValueChange={(value) => setDoctor(value)}>
-            <SelectTrigger className="w-[180px] dark:text-white dark:bg-slate-700 dark:border-slate-500">
+            <SelectTrigger className="w-[11.25rem] dark:text-white dark:bg-slate-700 dark:border-slate-500">
               <SelectValue placeholder="Doctor" />
             </SelectTrigger>
             <SelectContent className="dark:text-white dark:bg-slate-700 dark:border-slate-500">

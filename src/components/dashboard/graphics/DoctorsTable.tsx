@@ -34,6 +34,12 @@ const doctors = [
         Department: "Cardiology",
         Rated: "4.5",
     },
+    {
+        Doctor: "Malena perez",
+        Speciality: "Cardiology",
+        Department: "Cardiology",
+        Rated: "4.5",
+    },
 ]
 
 export function DoctorsTable() {
@@ -42,9 +48,9 @@ export function DoctorsTable() {
             <TableCaption>Top doctors rated</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Doctor</TableHead>
-                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Speciality</TableHead>
-                    <TableHead className="w-[300px] font-bold text-lg dark:text-white opacity-85">Department</TableHead>
+                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Doctor</TableHead>
+                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Speciality</TableHead>
+                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Department</TableHead>
                     <TableHead className="text-right font-bold text-lg dark:text-white opacity-85">Rated</TableHead>
                 </TableRow>
             </TableHeader>

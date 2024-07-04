@@ -1,12 +1,6 @@
 ---
 import MenuNavbar from "../components/navbar/MenuNavbar";
 import ThemeToggle from "./ThemeToggle";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
 ---
 
 <nav
@@ -19,8 +13,5 @@ import {
     <section class="flex items-center gap-5 mr-10">
         <MenuNavbar client:load />
         <ThemeToggle client:only="react" />
-        <div>
-            
-        </div>
     </section>
 </nav>

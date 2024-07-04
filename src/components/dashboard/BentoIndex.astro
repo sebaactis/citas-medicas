@@ -35,24 +35,24 @@ import DonutsCharts from "./graphics/DonutsChart";
             title="Appointments"
         />
     </article>
-    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
+    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12 place-items-center">
         <div
-            class="col-span-9 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col items-center justify-center py-4"
+            class="w-[20rem] md:w-full col-span-12 md:col-span-9 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col items-center justify-center py-4"
         >
             <AreaCharts client:idle />
         </div>
         <div
-            class="col-span-3 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-10 justify-center items-center"
+            class="h-[30rem] md:h-[25.2rem] w-[20rem] md:w-full col-span-12 md:col-span-3 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-10 justify-center items-center"
         >
             <DonutsCharts client:idle />
         </div>
     </article>
-    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12">
-        <div class="col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md">
+    <article class="col-span-10 grid grid-cols-12 gap-5 md:gap-3 mx-12 place-items-center">
+        <div class="h-[30rem] md:h-[24rem] w-[20rem] md:w-full col-span-12 md:col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md">
             <BarsChart client:idle />
         </div>
         <div
-            class="col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-5"
+            class="md:h-[24rem] col-span-12 md:col-span-6 bg-slate-100/90 dark:bg-slate-600/95 rounded-md flex flex-col gap-5"
         >
             <DoctorsTable />
         </div>

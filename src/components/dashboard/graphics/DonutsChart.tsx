@@ -26,7 +26,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export default function DonutsChart() {
   return (
     <>
-      <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 text-tremor-content-strong dark:text-dark-tremor-content-strong">
+      <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 dark:text-white">
         TOTAL APPOINTMENTS BY DEPARTMENT
       </h3>
       <ResponsiveContainer width="100%" height="100%">
