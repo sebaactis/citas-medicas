@@ -9,81 +9,78 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-const earnings = [
+const drugEarnings = [
     {
         id: 1,
-        reason: "Date medic",
-        date: "2015-05-23",
-        cost: 500,
-        deparment: "Cardilogy",
-        doctor: "Pedro Rodriguez"
-
+        name: "Ibupirac 500",
+        unitPrice: 7999,
+        quantitySell: 79
     },
-    
     {
         id: 2,
-        reason: "Date medic",
-        date: "2015-05-23",
-        cost: 500,
-        deparment: "Cardilogy",
-        doctor: "Pedro Rodriguez"
-
+        name: "Ibupirac 500",
+        unitPrice: 7999,
+        quantitySell: 79
     },
-    
     {
         id: 3,
-        reason: "Date medic",
-        date: "2015-05-23",
-        cost: 500,
-        deparment: "Cardilogy",
-        doctor: "Pedro Rodriguez"
-
+        name: "Ibupirac 500",
+        unitPrice: 7999,
+        quantitySell: 79
     },
-    
     {
         id: 4,
-        reason: "Date medic",
-        date: "2015-05-23",
-        cost: 500,
-        deparment: "Cardilogy",
-        doctor: "Pedro Rodriguez"
+        name: "Ibupirac 500",
+        unitPrice: 7999,
+        quantitySell: 79
+    }
+]
 
-    },
-    
+const bestProducts = [
     {
-        id: 5,
-        reason: "Date medic",
-        date: "2015-05-23",
-        cost: 500,
-        deparment: "Cardilogy",
-        doctor: "Pedro Rodriguez"
-
+        id: 1,
+        name: "Ibupirac 500",
+        rated: 4.4,
+    },
+    {
+        id: 2,
+        name: "Ibupirac 500",
+        rated: 4.8,
+    },
+    {
+        id: 3,
+        name: "Ibupirac 500",
+        rated: 4.8,
+    },
+    {
+        id: 4,
+        name: "Ibupirac 500",
+        rated: 4.8,
     },
 ]
+
 
 ---
 
 
-<div class="col-span-6 bg-slate-100 rounded-xl">
+<div class="col-span-6 bg-slate-100 rounded-xl w-5/6 pb-2">
     <Table className="mt-10">
         <h3 class="text-center text-2xl font-bold my-10 dark:text-white uppercase ">Drug earnings</h3>
         <TableHeader>
             <TableRow>
+                <TableHead className="font-bold text-black dark:text-white text-center">Id</TableHead>
                 <TableHead className="font-bold text-black dark:text-white text-center">Name</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Cost</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Date</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Deparment</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Doctor</TableHead>
+                <TableHead className="font-bold text-black dark:text-white text-center">Unit Price</TableHead>
+                <TableHead className="font-bold text-black dark:text-white text-center">Quantity Sell</TableHead>
             </TableRow>
         </TableHeader>
         <TableBody>
-            {earnings.map((earning: any) => (
+            {drugEarnings.map((earning: any) => (
                 <TableRow key={earning.id}>
-                    <TableCell className="text-center dark:text-white">{earning.reason}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.cost}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.date}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.deparment}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.doctor}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.id}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.name}</TableCell>
+                    <TableCell className="text-center dark:text-white">${earning.unitPrice}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.quantitySell}</TableCell>
 
                 </TableRow>
             ))}
@@ -91,27 +88,23 @@ const earnings = [
     </Table>
 
 </div>
-<div class="col-span-6 bg-slate-100 rounded-xl"> 
+<div class="col-span-6 bg-slate-100 rounded-xl w-5/6 pb-2"> 
 
     <Table className="mt-10">
         <h3 class="text-center text-2xl font-bold my-10 dark:text-white">BEST PRODUCTS</h3>
         <TableHeader>
             <TableRow>
+                <TableHead className="font-bold text-black dark:text-white text-center">ID</TableHead>
                 <TableHead className="font-bold text-black dark:text-white text-center">Name</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Cost</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Date</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Deparment</TableHead>
-                <TableHead className="font-bold text-black dark:text-white text-center">Doctor</TableHead>
+                <TableHead className="font-bold text-black dark:text-white text-center">Rated</TableHead>
             </TableRow>
         </TableHeader>
         <TableBody>
-            {earnings.map((earning: any) => (
+            {bestProducts.map((earning: any) => (
                 <TableRow key={earning.id}>
-                    <TableCell className="text-center dark:text-white">{earning.reason}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.cost}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.date}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.deparment}</TableCell>
-                    <TableCell className="text-center dark:text-white">{earning.doctor}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.id}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.name}</TableCell>
+                    <TableCell className="text-center dark:text-white">{earning.rated}</TableCell>
                 </TableRow>
             ))}
         </TableBody>
