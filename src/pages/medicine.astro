@@ -1,53 +1,18 @@
 ---
 import "@/styles/globals.css";
 import Layout from "../layouts/Layout.astro";
-import  MedicineCard from "@/components/medicine/MedicineCard.astro";
+import MedicineCard from "@/components/medicine/MedicineCard.astro";
 
-const items = [
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
+let items = [];
 
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
+try {
+    const response = await fetch("http://localhost:4321/api/medicine/medicines")
+    items = await response.json();
 
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
+} catch (error) {
+    console.error(error);
+}
 
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-    {
-        name: "Ibupirac 500",
-        price: "7999",
-    },
-];
 ---
 
 <Layout title="Medical dashboard">
@@ -59,9 +24,15 @@ const items = [
         </h3>
         <article class="w-5/6 grid grid-cols-12 gap-7">
             {
-                items.map((item) => {
-                    return <MedicineCard name={item.name} price={item.price}/>;
-                })
+                items.length > 0 ? (
+                    items.map((item: any) => {
+                        return (
+                            <MedicineCard name={item.name} price={item.price} />
+                        );
+                    })
+                ) : (
+                    <p>Medicines not found</p>
+                )
             }
         </article>
     </section>

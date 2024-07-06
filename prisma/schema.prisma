@@ -36,15 +36,17 @@ model Doctor {
 
   ratings      Rating[]
   appointments Appointment[]
+  earnings   Earning[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Department {
-  id      String   @id @default(uuid())
-  name    String
-  doctors Doctor[]
+  id       String    @id @default(uuid())
+  name     String
+  doctors  Doctor[]
+  earnings Earning[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -75,6 +77,29 @@ model Appointment {
   date      DateTime
   patient   Patient  @relation(fields: [patientId], references: [id])
   patientId String
+
+  Doctor   Doctor @relation(fields: [doctorId], references: [id])
+  doctorId String
+}
+
+model Medicine {
+  id    String  @id @default(uuid())
+  name  String
+  price Decimal
+  rated Decimal
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Earning {
+  id   String  @id @default(uuid())
+  name String
+  cost Decimal
+  type String
+
+  department   Department @relation(fields: [departmentId], references: [id])
+  departmentId String
 
   Doctor   Doctor @relation(fields: [doctorId], references: [id])
   doctorId String
