@@ -1,4 +1,5 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import useThemeStore from "@/stores/themeStore";
 
 const data = [
     {
@@ -28,6 +29,9 @@ const data = [
 ];
 
 export default function Example() {
+
+     const { darkMode } = useThemeStore();
+
     return (
         <>
             <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 pb-5 dark:text-white">
@@ -35,11 +39,11 @@ export default function Example() {
             </h3>
             <ResponsiveContainer width="90%" height={300}>
                 <AreaChart data={data}>
-                    <XAxis padding={{ left: 2 }} dataKey="date" tick={{fill: "#C80000", fontWeight: "700", fontSize: "1.1rem"}} />
-                    <YAxis dataKey="Appointments" tick={{fill: "#C80000", fontWeight: "700", fontSize: "1.1rem"}} />
+                    <XAxis dataKey="date" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
+                    <YAxis dataKey="Appointments" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
                     <Tooltip />
                     <CartesianGrid strokeDasharray="1 1" />
-                    <Area type="monotone" dataKey="Appointments" stroke="#C80000" fill="none" strokeWidth={2} />
+                    <Area type="monotone" dataKey="Appointments" stroke="#75002B" fill="none" strokeWidth={3} />
                 </AreaChart>
             </ResponsiveContainer>
         </>

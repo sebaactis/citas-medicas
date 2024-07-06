@@ -1,55 +1,49 @@
 import { XAxis, Tooltip, YAxis, BarChart, Bar, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
+import useThemeStore from "@/stores/themeStore"
 
 const data = [
   {
-    "name": "Page A",
-    "uv": 4000,
-    "pv": 2400
+    "name": "Ibupirac 500",
+    "moneyEarning": 5034,
+    "quantity": 2400
   },
   {
-    "name": "Page B",
-    "uv": 3000,
-    "pv": 1398
+    "name": "Ibupirac 500",
+    "moneyEarning": 2321,
+    "quantity": 3433
   },
   {
-    "name": "Page C",
-    "uv": 2000,
-    "pv": 9800
+    "name": "Ibupirac 500",
+    "moneyEarning": 1232,
+    "quantity": 3333
   },
   {
-    "name": "Page D",
-    "uv": 2780,
-    "pv": 3908
+    "name": "Ibupirac 500",
+    "moneyEarning": 2321,
+    "quantity": 232
   },
   {
-    "name": "Page E",
-    "uv": 1890,
-    "pv": 4800
+    "name": "Ibupirac 500",
+    "moneyEarning": 4333,
+    "quantity": 5444
   },
-  {
-    "name": "Page F",
-    "uv": 2390,
-    "pv": 3800
-  },
-  {
-    "name": "Page G",
-    "uv": 3490,
-    "pv": 4300
-  }
 ]
 
 export default function TotalEarningsBarChart() {
+
+  const { darkMode } = useThemeStore();
+
   return (
-    <ResponsiveContainer>
-      <BarChart data={data}>
+    <ResponsiveContainer >
+      <BarChart data={data} className="text-white">
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
+        <YAxis tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
         <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey="moneyEarning" fill="#900C3F" />
+        <Bar dataKey="quantity" fill="#581845" />
       </BarChart>
     </ResponsiveContainer>
   )
 }
+

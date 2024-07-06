@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Switch } from './ui/switch';
+import useThemeStore from "@/stores/themeStore"
 
 const ThemeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { switchTheme } = useThemeStore();
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
@@ -14,6 +16,7 @@ const ThemeToggle: React.FC = () => {
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+    switchTheme();
     if (!isDarkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');

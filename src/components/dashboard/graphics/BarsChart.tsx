@@ -1,4 +1,5 @@
 import { XAxis, Tooltip, YAxis, BarChart, Bar, ResponsiveContainer } from 'recharts';
+import useThemeStore from "@/stores/themeStore";
 
 const data =
   [
@@ -14,6 +15,8 @@ const data =
 
 export default function Example() {
 
+  const { darkMode } = useThemeStore();
+
   return (
     <>
       <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 dark:text-white">
@@ -21,10 +24,10 @@ export default function Example() {
       </h3>
       <ResponsiveContainer width="90%" height="80%" className="mt-2">
         <BarChart data={data} barCategoryGap="20%" barGap={4}>
-          <XAxis dataKey="date" tick={{fill: "#C80000", fontWeight: "700", fontSize: "1.1rem"}}  />
-          <YAxis padding={{ bottom: 2 }} tick={{fill: "#C80000", fontWeight: "700", fontSize: "1.1rem"}} />
+          <XAxis dataKey="date" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }}  />
+          <YAxis padding={{ bottom: 2 }} tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
           <Tooltip />
-          <Bar dataKey="Cantidad" fill="#C80000" />
+          <Bar dataKey="Cantidad" fill="#00752A" />
         </BarChart>
       </ResponsiveContainer>
     </>

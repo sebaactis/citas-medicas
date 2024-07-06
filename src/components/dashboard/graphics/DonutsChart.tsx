@@ -7,7 +7,7 @@ const data = [
   { name: 'Children', amount: 1253, },
 ];
 
-const COLORS = ['#870000', '#FF5757', '#FF0000', '#9E4C4C'];
+const COLORS = ['#75002B', '#750F00', '#754A00', '#657500'];
 
 const RADIAN = Math.PI / 180;
 
