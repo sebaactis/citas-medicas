@@ -1,7 +1,7 @@
 ---
 import "@/styles/globals.css";
 import Layout from "../layouts/Layout.astro";
-import MedicineCard from "@/components/medicine/MedicineCard.astro";
+import MedicineCard from "@/components/medicine/MedicineCard"
 
 let items = [];
 
@@ -27,7 +27,7 @@ try {
                 items.length > 0 ? (
                     items.map((item: any) => {
                         return (
-                            <MedicineCard name={item.name} price={item.price} />
+                            <MedicineCard id={item.id} name={item.name} price={item.price} client:load />
                         );
                     })
                 ) : (
