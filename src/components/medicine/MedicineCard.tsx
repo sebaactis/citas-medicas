@@ -1,5 +1,6 @@
+import { Toaster } from "sonner";
 import { Pill, Details, Edit, X } from "../Icons";
-import { useModal, type ModalType } from "@/hooks/useModal";
+import { useModal } from "@/hooks/useModal";
 
 interface MedicineCardProps {
     id: string
@@ -30,6 +31,7 @@ const MedicineCard = ({ id, name, price, className }: MedicineCardProps) => {
                 </button>
                 <button
                     className="bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 transition-all px-1.5 py-1 rounded-md text-white"
+                    onClick={() => onOpen("medicineEdit", { id })}
                 >
                     <Edit />
                 </button>
@@ -39,6 +41,7 @@ const MedicineCard = ({ id, name, price, className }: MedicineCardProps) => {
                     <X />
                 </button>
             </div>
+            <Toaster />
         </div>
     );
 };

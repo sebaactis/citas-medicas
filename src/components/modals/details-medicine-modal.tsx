@@ -48,16 +48,16 @@ const MedicineDetailsModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
-            <DialogContent>
+            <DialogContent className="dark:text-white">
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
                     <DialogDescription>
                         {loading && <p>Loading...</p>}
                         {medicine !== undefined &&
                             <div className="flex flex-col gap-2">
-                                <p className="font-bold"> Medicine ID: </p> <span>{medicine.id}</span>
-                                <p className="font-bold"> Name: </p> <span>{medicine.name}</span>
-                                <p className="font-bold"> Price: </p> <span>${medicine.price.toString()}</span>
+                                <p className="font-bold dark:text-white"> Medicine ID: </p> <span>{medicine.id}</span>
+                                <p className="font-bold dark:text-white"> Name: </p> <span>{medicine.name}</span>
+                                <p className="font-bold dark:text-white"> Price: </p> <span>${medicine.price.toString()}</span>
                             </div>
                         }
                     </DialogDescription>
