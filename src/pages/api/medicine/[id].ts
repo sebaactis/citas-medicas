@@ -41,8 +41,6 @@ export async function GET({ params }: APIContext) {
     }
 }
 
-
-
 export async function PUT({ params, request }: APIContext) {
 
     const data = await request.json();
@@ -91,6 +89,43 @@ export async function PUT({ params, request }: APIContext) {
                     statusText: "Not Found"
                 })
         }
+    }
+}
+
+export async function DELETE({ params }: APIContext) {
+
+    try {
+
+        const medicine = await db.medicine.findFirst({
+            where: {
+                id: params.id
+            }
+        })
+
+        if (!medicine) {
+            return new Response(
+                JSON.stringify({
+                    message: "Producto no encontrado"
+                }),
+                {
+                    status: 404,
+                    statusText: "Not Found"
+                }
+            )
+        }
+
+        await db.medicine.delete({
+            where: {
+                id: medicine.id
+            }
+        })
+
+        return new Response(JSON.stringify({
+            message: `El producto ${params.id} fue eliminado correctamente`
+        }), { status: 200, statusText: "OK" })
+
+    } catch (err) {
+
     }
 }
 

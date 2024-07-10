@@ -37,6 +37,7 @@ const MedicineCard = ({ id, name, price, className }: MedicineCardProps) => {
                 </button>
                 <button
                     className="bg-red-600 dark:bg-red-500 hover:bg-red-700 dark:hover:bg-red-600 transition-all px-1.5 py-1 rounded-md text-white"
+                    onClick={() => onOpen("medicineDelete", { id })}
                 >
                     <X />
                 </button>
