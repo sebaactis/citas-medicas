@@ -1,8 +1,6 @@
 import { db } from "@/lib/db";
 import type { APIContext } from "astro";
 
-export const prerender = false
-
 export async function GET({ params }: APIContext) {
 
     try {
@@ -105,7 +103,7 @@ export async function DELETE({ params }: APIContext) {
         if (!medicine) {
             return new Response(
                 JSON.stringify({
-                    message: "Producto no encontrado"
+                    message: "Producto not found"
                 }),
                 {
                     status: 404,
