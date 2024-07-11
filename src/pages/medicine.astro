@@ -1,21 +1,23 @@
 ---
 import "@/styles/globals.css";
 import Layout from "../layouts/Layout.astro";
-import MedicineCard from "@/components/medicine/MedicineCard"
+import MedicineCard from "@/components/medicine/MedicineCard";
+import AddMedicineButton from "@/components/medicine/AddMedicineButton";
 
 let items = [];
 
 try {
-    const response = await fetch("http://localhost:4321/api/medicine/medicines")
+    const response = await fetch(
+        "http://localhost:4321/api/medicine/medicines",
+    );
     items = await response.json();
-
 } catch (error) {
     console.error(error);
 }
-
 ---
 
 <Layout title="Medical dashboard">
+    <AddMedicineButton client:load />
     <section class="flex flex-col items-center mb-4">
         <h3
             class="text-center font-bold text-3xl my-10 dark:text-white uppercase"
@@ -27,7 +29,12 @@ try {
                 items.length > 0 ? (
                     items.map((item: any) => {
                         return (
-                            <MedicineCard id={item.id} name={item.name} price={item.price} client:load />
+                            <MedicineCard
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                client:load
+                            />
                         );
                     })
                 ) : (

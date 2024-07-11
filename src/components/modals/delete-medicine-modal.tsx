@@ -79,11 +79,11 @@ const DeleteMedicineModal = () => {
                             <div className="flex flex-col gap-2">
                                 {medicine !== null &&
                                     <div className="flex flex-col gap-4 items-center">
-                                        <p className="py-4 font-bold">¿Estás seguro que deseas eliminar el siguiente registro?</p>
-                                        <div className="flex flex-col gap-2 bg-slate-200 p-6 rounded-md">
-                                            <p className="font-bold dark:text-white"> Medicine ID: </p> <span>{medicine.id}</span>
-                                            <p className="font-bold dark:text-white"> Name: </p> <span>{medicine.name}</span>
-                                            <p className="font-bold dark:text-white"> Price: </p> <span>${medicine.price.toString()}</span>
+                                        <p className="py-4 font-bold dark:text-white dark:opacity-85">¿Estás seguro que deseas eliminar el siguiente registro?</p>
+                                        <div className="flex flex-col gap-2 bg-slate-200 dark:bg-slate-600 p-6 rounded-md">
+                                            <p className="font-bold dark:text-white"> Medicine ID: </p> <span className="dark:text-slate-300">{medicine.id}</span>
+                                            <p className="font-bold dark:text-white"> Name: </p> <span className="dark:text-slate-300">{medicine.name}</span>
+                                            <p className="font-bold dark:text-white"> Price: </p> <span className="dark:text-slate-300">${medicine.price.toString()}</span>
                                         </div>
                                         <div className="flex gap-3">
                                             <button className="mt-3 bg-red-600 px-4 py-2.5 hover:bg-red-500 transition-all text-white rounded-lg font-bold" onClick={() => handleDelete(medicine.id)}>Confirm</button>
