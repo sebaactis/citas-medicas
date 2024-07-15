@@ -1,5 +1,5 @@
 ---
-import { SideBarIcons, type Item } from '@/lib/types';
+import { SideBarIcons, type Item } from "@/lib/types";
 
 interface Props {
     list: Item[];
@@ -11,7 +11,7 @@ const { list } = Astro.props;
 <ul class="flex flex-col px-6 gap-4">
     {
         list.map((item) => {
-            const IconComponent = SideBarIcons[item.icon]
+            const IconComponent = SideBarIcons[item.icon];
             return (
                 <a
                     href={item.link}
