@@ -23,7 +23,6 @@ const CreateMedicineModal = () => {
     const isModalOpen = isOpen && type === "medicineCreate"
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(medicine);
         setMedicine(prevState => prevState ? { ...prevState, [e.target.name]: e.target.value } : null);
     }
 

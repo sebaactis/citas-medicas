@@ -11,6 +11,7 @@ import { Details, Edit, X } from "../Icons";
 import { useEffect, useState } from "react";
 import { type Department } from "@prisma/client";
 import { useModal } from "@/hooks/useModal";
+import { Toaster } from "sonner";
 
 export default function DepartmentsList() {
 
@@ -51,10 +52,10 @@ export default function DepartmentsList() {
                                 <button onClick={() => onOpen("deparmentDetails", { id })} className="bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 transition-all px-1.5 py-1 rounded-md text-white">
                                     <Details />
                                 </button>
-                                <button className="bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 transition-all px-1.5 py-1 rounded-md text-white">
+                                <button onClick={() => onOpen("deparmentEdit", { id })} className="bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 transition-all px-1.5 py-1 rounded-md text-white">
                                     <Edit />
                                 </button>
-                                <button className="bg-red-600 dark:bg-red-500 hover:bg-red-700 dark:hover:bg-red-600 transition-all px-1.5 py-1 rounded-md text-white">
+                                <button onClick={() => onOpen("deparmentDelete", { id })} className="bg-red-600 dark:bg-red-500 hover:bg-red-700 dark:hover:bg-red-600 transition-all px-1.5 py-1 rounded-md text-white">
                                     <X />
                                 </button>
                             </TableCell>

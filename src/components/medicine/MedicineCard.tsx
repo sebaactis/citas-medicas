@@ -1,4 +1,3 @@
-import { Toaster } from "sonner";
 import { Pill, Details, Edit, X } from "../Icons";
 import { useModal } from "@/hooks/useModal";
 
@@ -42,7 +41,6 @@ const MedicineCard = ({ id, name, price, className }: MedicineCardProps) => {
                     <X />
                 </button>
             </div>
-            <Toaster />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import Header from "@/components/Header.astro";
 import SideBar from "@/components/sidebar/SideBar.astro";
 import { ModalProvider } from "@/providers/modalProvider";
 import { ViewTransitions } from "astro:transitions";
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
 
 interface Props {
 	title: string;
@@ -30,6 +30,7 @@ const { title } = Astro.props;
 			<section class="w-full">
 				<ModalProvider client:load/>
 				<slot />
+				<Toaster client:idle/>
 			</section>
 		</main>
 		<style is:global>
