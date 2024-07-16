@@ -15,6 +15,7 @@ const EditDoctorModal = () => {
 
     const [doctor, setDoctor] = useState<DoctorWithRelations | null>(null);
     const [departments, setDepartments] = useState<Department[]>([]);
+    const [specialities, setSpecialities] = useState<Department[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     const { isOpen, onClose, type, data } = useModal();
@@ -47,15 +48,27 @@ const EditDoctorModal = () => {
         }
     };
 
+    const getSpecialities = async () => {
+        try {
+            const response = await fetch("http://localhost:4321/api/speciality/specialities");
+            const data = await response.json();
+            setSpecialities(data);
+        } catch (err) {
+            console.error(err)
+        }
+    };
+
     useEffect(() => {
         if (isModalOpen && id) {
             getDoctorDetails(id);
             getDepartments();
+            getSpecialities();
         }
     }, [isModalOpen]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
+        console.log(name, value)
         setDoctor(prevState => prevState ? { ...prevState, [name]: value } : null);
     }
 
@@ -121,6 +134,15 @@ const EditDoctorModal = () => {
                                             {departments.map((department) => (
                                                 <option key={department.id} value={department.id}>
                                                     {department.name}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        <label htmlFor="specialtieId" className="font-bold w-full">Speciality</label>
+                                        <select name="specialtieId" value={doctor.specialtieId} onChange={handleChange} className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full">
+                                            {specialities.map((speciality) => (
+                                                <option key={speciality.id} value={speciality.id}>
+                                                    {speciality.name}
                                                 </option>
                                             ))}
                                         </select>

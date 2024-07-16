@@ -59,7 +59,8 @@ export async function PUT({ params, request }: APIContext) {
             },
             data: {
                 name: data.name,
-                departmentId: data.departmentId
+                departmentId: data.departmentId,
+                specialtieId: data.specialtieId
             }
         })
 
