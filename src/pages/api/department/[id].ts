@@ -133,9 +133,9 @@ export async function getStaticPaths() {
         }
     })
 
-    return department.map((medicine) => ({
+    return department.map((department) => ({
         params: {
-            id: medicine.id
+            id: department.id
         }
     }))
 }
