@@ -82,6 +82,43 @@ export async function PUT({ params, request }: APIContext) {
     }
 }
 
+export async function DELETE({ params }: APIContext) {
+
+    try {
+
+        const doctor = await db.doctor.findFirst({
+            where: {
+                id: params.id
+            }
+        })
+
+        if (!doctor) {
+            return new Response(
+                JSON.stringify({
+                    message: "Doctor not found"
+                }),
+                {
+                    status: 404,
+                    statusText: "Not Found"
+                }
+            )
+        }
+
+        await db.doctor.delete({
+            where: {
+                id: doctor.id
+            }
+        })
+
+        return new Response(JSON.stringify({
+            message: `The doctor ${params.id} has been deleted successfully`
+        }), { status: 200, statusText: "OK" })
+
+    } catch (err) {
+
+    }
+}
+
 
 export async function getStaticPaths() {
     const doctor = await db.doctor.findMany({

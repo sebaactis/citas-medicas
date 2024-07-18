@@ -29,7 +29,7 @@ export default function AddDeparments() {
 
             if (response.status === 201) {
 
-                toast.success("Medicine created successfully!", {
+                toast.success("Department created successfully!", {
                     classNames: {
                         toast: 'bg-green-700 border-green-700',
                         title: 'text-white',

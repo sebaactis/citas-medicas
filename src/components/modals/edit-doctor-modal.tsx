@@ -68,7 +68,6 @@ const EditDoctorModal = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        console.log(name, value)
         setDoctor(prevState => prevState ? { ...prevState, [name]: value } : null);
     }
 
