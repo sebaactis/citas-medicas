@@ -8,6 +8,7 @@ import {
     MedicineIcon,
     PatientsIcon,
     SettingIcon,
+    StarIcon,
 } from "@/components/Icons";
 import type { Department, Doctor, Specialtie } from "@prisma/client";
 
@@ -20,7 +21,8 @@ export const SideBarIcons = {
     "HouseIcon": HouseIcon,
     "MedicineIcon": MedicineIcon,
     "PatientsIcon": PatientsIcon,
-    "SettingIcon": SettingIcon
+    "SettingIcon": SettingIcon,
+    "StarIcon": StarIcon
 }
 
 export interface Item {
