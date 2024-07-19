@@ -1,6 +1,6 @@
 import { create } from "zustand"
 
-export type ModalType = "medicineDetails" | "medicineEdit" | "medicineDelete" | "medicineCreate" | "deparmentDetails" | "deparmentEdit" | "deparmentDelete" | "doctorDetails" | "doctorEdit" | "doctorDelete" | "specialtyDetails" | "specialtyDelete" | "specialtyEdit"
+export type ModalType = "medicineDetails" | "medicineEdit" | "medicineDelete" | "medicineCreate" | "deparmentDetails" | "deparmentEdit" | "deparmentDelete" | "doctorDetails" | "doctorEdit" | "doctorDelete" | "specialtyDetails" | "specialtyDelete" | "specialtyEdit" | "patientDetails" | "patientDelete" | "patientEdit"
 
 interface ModalStore {
     type: ModalType | null
