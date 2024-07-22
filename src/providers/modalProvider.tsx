@@ -1,4 +1,5 @@
 import CreateMedicineModal from "@/components/modals/create-medicine-modal"
+import DeleteAppointmentModal from "@/components/modals/delete-appointment-modal"
 import DeleteDeparmentModal from "@/components/modals/delete-department-modal"
 import DeleteDoctorModal from "@/components/modals/delete-doctor-modal"
 import DeleteMedicineModal from "@/components/modals/delete-medicine-modal"
@@ -10,6 +11,7 @@ import DoctorDetailsModal from "@/components/modals/details-doctor-modal"
 import MedicineDetailsModal from "@/components/modals/details-medicine-modal"
 import PatientDetailsModal from "@/components/modals/details-patient-modal"
 import SpecialityDetailsModal from "@/components/modals/details-speciality-modal"
+import EditAppointmentModal from "@/components/modals/edit-appointment-modal"
 import EditDeparmentModal from "@/components/modals/edit-department-modal"
 import EditDoctorModal from "@/components/modals/edit-doctor-modal"
 import EditMedicineModal from "@/components/modals/edit-medicine-modal"
@@ -37,6 +39,8 @@ export const ModalProvider = () => {
             <EditPatientModal />
             <DeletePatientModal />
             <AppointmentDetailsModal />
+            <EditAppointmentModal />
+            <DeleteAppointmentModal />
         </>
     )
 }

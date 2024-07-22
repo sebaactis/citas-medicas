@@ -7,25 +7,20 @@ import {
 } from "@/components/ui/dialog"
 import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
+import { toast } from 'sonner'
 import type { AppointmentWithRelations } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
-const AppointmentDetailsModal = () => {
+const DeleteAppointmentModal = () => {
 
     const [appointment, setAppointment] = useState<AppointmentWithRelations>();
-    const [loading, setLoading] = useState<boolean>(false);
 
     const { isOpen, onClose, type, data } = useModal();
-    const isModalOpen = isOpen && type === "appointmentDetails"
+    const isModalOpen = isOpen && type === "appointmentDelete"
     const { id } = data;
-
-    const handleClose = () => {
-        onClose();
-    }
 
     const GetDetails = async (appointmentId: string) => {
         try {
-            setLoading(true);
             const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`);
 
             if (!response.ok) {
@@ -37,8 +32,6 @@ const AppointmentDetailsModal = () => {
             setAppointment(details);
         } catch (err) {
             console.error(err);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -48,13 +41,43 @@ const AppointmentDetailsModal = () => {
         }
     }, [isModalOpen])
 
+    const handleDelete = async (appointmentId: string) => {
+
+        try {
+            const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`, {
+                method: "DELETE"
+            })
+
+            const jsonResponse = await response.json();
+
+            toast.success(jsonResponse.message, {
+                classNames: {
+                    toast: 'bg-red-700 border-red-700',
+                    title: 'text-white',
+                    icon: 'text-white'
+                }
+            });
+
+            setTimeout(() => {
+                onClose();
+                window.location.reload();
+            }, 1200)
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleClose = () => {
+        onClose();
+    }
+
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="dark:text-white">
                 <DialogHeader>
-                    <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
+                    <DialogTitle className="text-center text-2xl pb-2">Delete Doctor</DialogTitle>
                     <DialogDescription>
-                        {loading && <p>Loading...</p>}
                         {appointment !== undefined &&
                             <div className="flex flex-col gap-4">
                                 <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.id}</span>
@@ -63,7 +86,12 @@ const AppointmentDetailsModal = () => {
                                 <p className="font-bold dark:text-white"> Doctor Name: </p> <span>{appointment.Doctor.name}</span>
                                 <p className="font-bold dark:text-white"> Patient ID: </p> <span>{appointment.patientId}</span>
                                 <p className="font-bold dark:text-white"> Patient Name: </p> <span>{appointment.patient.name}</span>
+                                <div className="flex gap-3 items-center">
+                                    <button className="mt-3 bg-red-600 px-4 py-2.5 hover:bg-red-500 transition-all text-white rounded-lg font-bold" onClick={() => handleDelete(appointment.id)}>Confirm</button>
+                                    <button className="mt-3 bg-sky-600 px-4 py-2.5 hover:bg-sky-500 transition-all text-white rounded-lg font-bold" onClick={() => handleClose()}>Cancel</button>
+                                </div>
                             </div>
+
                         }
                     </DialogDescription>
                 </DialogHeader>
@@ -72,4 +100,4 @@ const AppointmentDetailsModal = () => {
     )
 }
 
-export default AppointmentDetailsModal
+export default DeleteAppointmentModal

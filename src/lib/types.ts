@@ -41,3 +41,11 @@ export type AppointmentWithRelations = Appointment & {
     Doctor: Doctor
 }
 
+export type AppointmentIn = {
+    id: string;
+    date: Date;
+    hour: string;
+    patientId: string;
+    doctorId: string;
+  }
+

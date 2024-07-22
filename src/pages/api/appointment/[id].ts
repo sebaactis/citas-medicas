@@ -34,17 +34,19 @@ export async function PUT({ params, request }: APIContext) {
 
     const data = await request.json();
 
+    console.log(data);
+
     try {
-        const doctor = await db.doctor.findFirst({
+        const appointment = await db.appointment.findFirst({
             where: {
                 id: params.id
             }
         })
 
-        if (!doctor) {
+        if (!appointment) {
             return new Response(
                 JSON.stringify({
-                    message: "Doctor not found"
+                    message: "Appointment not found"
                 }),
                 {
                     status: 404,
@@ -53,19 +55,20 @@ export async function PUT({ params, request }: APIContext) {
             )
         }
 
-        await db.doctor.update({
+
+        const prueba = await db.appointment.update({
             where: {
-                id: doctor.id
+                id: appointment.id
             },
             data: {
-                name: data.name,
-                departmentId: data.departmentId,
-                specialtieId: data.specialtieId
+                date: data.date,
+                patientId: data.patientId,
+                doctorId: data.doctorId
             }
         })
 
         return new Response(JSON.stringify({
-            message: `The doctor ${params.id} has been updated successfully`
+            message: `The appointment ${params.id} has been updated successfully`
         }), { status: 200, statusText: "OK" })
     }
     catch (err) {
@@ -86,16 +89,16 @@ export async function DELETE({ params }: APIContext) {
 
     try {
 
-        const doctor = await db.doctor.findFirst({
+        const appointment = await db.appointment.findFirst({
             where: {
                 id: params.id
             }
         })
 
-        if (!doctor) {
+        if (!appointment) {
             return new Response(
                 JSON.stringify({
-                    message: "Doctor not found"
+                    message: "Appointment not found"
                 }),
                 {
                     status: 404,
@@ -104,14 +107,14 @@ export async function DELETE({ params }: APIContext) {
             )
         }
 
-        await db.doctor.delete({
+        await db.appointment.delete({
             where: {
-                id: doctor.id
+                id: appointment.id
             }
         })
 
         return new Response(JSON.stringify({
-            message: `The doctor ${params.id} has been deleted successfully`
+            message: `The appointment ${params.id} has been deleted successfully`
         }), { status: 200, statusText: "OK" })
 
     } catch (err) {
