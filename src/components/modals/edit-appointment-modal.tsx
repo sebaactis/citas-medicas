@@ -151,16 +151,16 @@ const EditAppointmentModal = () => {
                         {appointment !== undefined &&
                             <div className="flex flex-col gap-2">
                                 {appointment !== null &&
-                                    <div className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col gap-2 items-center">
                                             <Calendar
                                                 mode="single"
                                                 selected={appointment.date}
                                                 onSelect={handleDateChange}
                                                 className="rounded-md border-2 border-slate-300 dark:border-slate-500 p-[-15px] 2xl:p-7"
                                             />
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 my-4">
 
-                                                <select className="2xl:w-[11.25rem] dark:text-white dark:bg-slate-700 dark:border-slate-500 p-2 rounded-md" name="patientId" value={appointment.patientId} onChange={handleChange}>
+                                                <select className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-56" name="patientId" value={appointment.patientId} onChange={handleChange}>
                                                     {patients !== undefined && patients.map((patient) => {
                                                         return (
                                                             <option key={patient.id} value={patient.id}>{patient.name}</option>
@@ -168,7 +168,7 @@ const EditAppointmentModal = () => {
                                                     })}
                                                 </select>
 
-                                                <select className="2xl:w-[11.25rem] dark:text-white dark:bg-slate-700 dark:border-slate-500 p-2 rounded-md" name="doctorId" value={appointment.doctorId} onChange={handleChange}>
+                                                <select className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-56" name="doctorId" value={appointment.doctorId} onChange={handleChange}>
                                                     {doctors !== undefined && doctors.map((doctor) => {
                                                         return (
                                                             <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
@@ -177,7 +177,7 @@ const EditAppointmentModal = () => {
                                                 </select>
 
                                             </div>
-                                            <button onClick={() => handleUpdate(appointment.id)} className="bg-green-500 dark:bg-green-400 px-4 py-2 rounded-md font-black hover:bg-green-400 transition-all"> SUBMIT </button>
+                                            <button onClick={() => handleUpdate(appointment.id)} className="bg-green-500 dark:bg-green-400 px-4 py-2 rounded-md font-black hover:bg-green-400 dark:hover:bg-green-500 transition-all text-black"> SUBMIT </button>
                                     </div>
                                 }
                             </div>
