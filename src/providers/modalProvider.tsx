@@ -4,6 +4,7 @@ import DeleteDoctorModal from "@/components/modals/delete-doctor-modal"
 import DeleteMedicineModal from "@/components/modals/delete-medicine-modal"
 import DeletePatientModal from "@/components/modals/delete-patient-modal"
 import DeleteSpecialityModal from "@/components/modals/delete-speciality-modal"
+import AppointmentDetailsModal from "@/components/modals/details-appointment-modal"
 import DeparmentDetailsModal from "@/components/modals/details-department-modal"
 import DoctorDetailsModal from "@/components/modals/details-doctor-modal"
 import MedicineDetailsModal from "@/components/modals/details-medicine-modal"
@@ -35,6 +36,7 @@ export const ModalProvider = () => {
             <PatientDetailsModal />
             <EditPatientModal />
             <DeletePatientModal />
+            <AppointmentDetailsModal />
         </>
     )
 }

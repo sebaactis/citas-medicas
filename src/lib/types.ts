@@ -10,7 +10,7 @@ import {
     SettingIcon,
     StarIcon,
 } from "@/components/Icons";
-import type { Department, Doctor, Specialtie } from "@prisma/client";
+import type { Appointment, Department, Doctor, Patient, Specialtie } from "@prisma/client";
 
 export const SideBarIcons = {
     "CalendarIcon": CalendarIcon,
@@ -35,3 +35,9 @@ export type DoctorWithRelations = Doctor & {
     department: Department
     specialtie: Specialtie
 }
+
+export type AppointmentWithRelations = Appointment & {
+    patient: Patient,
+    Doctor: Doctor
+}
+
