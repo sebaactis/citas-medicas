@@ -14,15 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+import { useEffect, useState } from "react";
 
 const chartConfig = {
   desktop: {
@@ -36,12 +28,25 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export default function AreaCharts() {
+
+  const [chartData, setChartData] = useState<[]>();
+
+  const getChartInfo = async () => {
+    const response = await fetch("http://localhost:4321/api/appointment/groupdate")
+    const info = await response.json();
+    setChartData(info);
+  }
+
+  useEffect(() => {
+    getChartInfo();
+  }, [])
+
   return (
     <Card className="w-full h-[26rem]">
       <CardHeader>
-        <CardTitle>Area Chart - Stacked</CardTitle>
+        <CardTitle>Appointments by date</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total appointments in the last days
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -56,30 +61,22 @@ export default function AreaCharts() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
-              tickLine={false}
+              dataKey="date"
+              tickLine={true}
               axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickMargin={10}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="mobile"
+              dataKey="count"
+              name="Quantity"
               type="natural"
               fill="var(--color-mobile)"
               fillOpacity={0.4}
               stroke="var(--color-mobile)"
-              stackId="a"
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
-              fillOpacity={0.4}
-              stroke="var(--color-desktop)"
               stackId="a"
             />
           </AreaChart>
