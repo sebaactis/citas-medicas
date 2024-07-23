@@ -1,51 +1,90 @@
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import useThemeStore from "@/stores/themeStore";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { type ChartConfig } from "@/components/ui/chart"
 
-const data = [
-    {
-        "date": 'Jan 23',
-        Appointments: 12424,
-    },
-    {
-        "date": 'Feb 23',
-        Appointments: 1245,
-    },
-    {
-        "date": 'Mar 23',
-        Appointments: 2325,
-    },
-    {
-        "date": 'Abr 23',
-        Appointments: 1675,
-    },
-    {
-        "date": 'May 23',
-        Appointments: 10503,
-    },
-    {
-        "date": 'Jun 23',
-        Appointments: 10000,
-    },
-];
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
 
-export default function Example() {
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+]
 
-     const { darkMode } = useThemeStore();
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-4))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig
 
-    return (
-        <>
-            <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 pb-5 dark:text-white">
-                APPOINTMENTS EVOLUTION
-            </h3>
-            <ResponsiveContainer width="90%" height={300}>
-                <AreaChart data={data}>
-                    <XAxis dataKey="date" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
-                    <YAxis dataKey="Appointments" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
-                    <Tooltip />
-                    <CartesianGrid strokeDasharray="1 1" />
-                    <Area type="monotone" dataKey="Appointments" stroke="#75002B" fill="none" strokeWidth={3} />
-                </AreaChart>
-            </ResponsiveContainer>
-        </>
-    );
+export default function AreaCharts() {
+  return (
+    <Card className="w-full h-[26rem]">
+      <CardHeader>
+        <CardTitle>Area Chart - Stacked</CardTitle>
+        <CardDescription>
+          Showing total visitors for the last 6 months
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer className="w-full h-[18rem]" config={chartConfig}>
+          <AreaChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dot" />}
+            />
+            <Area
+              dataKey="mobile"
+              type="natural"
+              fill="var(--color-mobile)"
+              fillOpacity={0.4}
+              stroke="var(--color-mobile)"
+              stackId="a"
+            />
+            <Area
+              dataKey="desktop"
+              type="natural"
+              fill="var(--color-desktop)"
+              fillOpacity={0.4}
+              stroke="var(--color-desktop)"
+              stackId="a"
+            />
+          </AreaChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  )
 }

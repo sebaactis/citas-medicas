@@ -1,35 +1,77 @@
-import { XAxis, Tooltip, YAxis, BarChart, Bar, ResponsiveContainer } from 'recharts';
-import useThemeStore from "@/stores/themeStore";
+import { TrendingUp } from "lucide-react"
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { type ChartConfig } from "@/components/ui/chart"
 
-const data =
-  [
-    { "date": '21-06', "Cantidad": 15 },
-    { "date": '22-06', "Cantidad": 23 },
-    { "date": '23-06', "Cantidad": 24 },
-    { "date": '24-06', "Cantidad": 25 },
-    { "date": '25-06', "Cantidad": 12 },
-    { "date": '26-06', "Cantidad": 54 },
-    { "date": '27-06', "Cantidad": 44 },
-    { "date": '28-06', "Cantidad": 143 },
-  ];
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+]
 
-export default function Example() {
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig
 
-  const { darkMode } = useThemeStore();
-
+export default function BarsChart() {
   return (
-    <>
-      <h3 className="text-center ml-10 mr-10 text-2xl font-black mt-5 dark:text-white">
-        PATIENTS FOR DATE
-      </h3>
-      <ResponsiveContainer width="90%" height="80%" className="mt-2">
-        <BarChart data={data} barCategoryGap="20%" barGap={4}>
-          <XAxis dataKey="date" tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }}  />
-          <YAxis padding={{ bottom: 2 }} tick={{ fill: darkMode ? 'white' : 'black', fontWeight: "600" }} />
-          <Tooltip />
-          <Bar dataKey="Cantidad" fill="#00752A" />
-        </BarChart>
-      </ResponsiveContainer>
-    </>
-  );
+    <Card className="w-full h-[24.05rem]">
+      <CardHeader>
+        <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer className="w-full h-[18rem]" config={chartConfig}>
+          <BarChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartLegend content={<ChartLegendContent />} />
+            <Bar
+              dataKey="desktop"
+              stackId="a"
+              fill="var(--color-desktop)"
+              radius={[0, 0, 4, 4]}
+            />
+            <Bar
+              dataKey="mobile"
+              stackId="a"
+              fill="var(--color-mobile)"
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  )
 }

@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card"
 import {
     Table,
     TableBody,
@@ -44,26 +45,28 @@ const doctors = [
 
 export function DoctorsTable() {
     return (
-        <Table>
-            <TableCaption>Top doctors rated</TableCaption>
-            <TableHeader>
-                <TableRow>
-                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Doctor</TableHead>
-                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Speciality</TableHead>
-                    <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Department</TableHead>
-                    <TableHead className="text-right font-bold text-lg dark:text-white opacity-85">Rated</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {doctors.map((doctor) => (
-                    <TableRow key={doctor.Doctor}>
-                        <TableCell className="text-base dark:text-white">{doctor.Doctor}</TableCell>
-                        <TableCell className="text-base dark:text-white">{doctor.Speciality}</TableCell>
-                        <TableCell className="text-base dark:text-white">{doctor.Department}</TableCell>
-                        <TableCell className="text-center text-base dark:text-white">{doctor.Rated}</TableCell>
+        <Card className="py-[0.45rem]">
+            <Table>
+                <TableCaption>Top doctors rated</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Doctor</TableHead>
+                        <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Speciality</TableHead>
+                        <TableHead className="w-[18.75rem] font-bold text-lg dark:text-white opacity-85">Department</TableHead>
+                        <TableHead className="text-right font-bold text-lg dark:text-white opacity-85">Rated</TableHead>
                     </TableRow>
-                ))}
-            </TableBody>
-        </Table>
+                </TableHeader>
+                <TableBody>
+                    {doctors.map((doctor) => (
+                        <TableRow key={doctor.Doctor}>
+                            <TableCell className="text-base dark:text-white">{doctor.Doctor}</TableCell>
+                            <TableCell className="text-base dark:text-white">{doctor.Speciality}</TableCell>
+                            <TableCell className="text-base dark:text-white">{doctor.Department}</TableCell>
+                            <TableCell className="text-center text-base dark:text-white">{doctor.Rated}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </Card>
     )
 }
