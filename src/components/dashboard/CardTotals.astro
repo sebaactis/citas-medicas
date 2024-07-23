@@ -1,16 +1,16 @@
 ---
-import { CalendarCard, DoctorCard, IconCard, PersonCard } from "../Icons";
+import { CalendarCard, DoctorCard, MedicineIconCard, PersonCard } from "../Icons";
 import { Card } from "../ui/card";
 
 const CardsIcons = {
     CalendarCard: CalendarCard,
     DoctorCard: DoctorCard,
-    IconCard: IconCard,
+    MedicineIcon: MedicineIconCard,
     PersonCard: PersonCard,
 };
 interface Props {
     icon: keyof typeof CardsIcons;
-    count: string;
+    count: number;
     title: string;
     class: string;
 }

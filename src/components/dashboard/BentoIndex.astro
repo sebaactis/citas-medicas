@@ -4,6 +4,36 @@ import AreaCharts from "./graphics/AreaCharts";
 import BarsChart from "./graphics/BarsChart";
 import { DoctorsTable } from "./graphics/DoctorsTable";
 import DonutsCharts from "./graphics/DonutsChart";
+
+let doctors = 0;
+let patients = 0;
+let appointments = 0;
+let medicines = 0;
+
+try {
+    const responseDoctors = await fetch(
+        "http://localhost:4321/api/doctor/count",
+    );
+    doctors = await responseDoctors.json();
+
+    const responsePatients = await fetch(
+        "http://localhost:4321/api/patient/count",
+    );
+    patients = await responsePatients.json();
+
+    const responseAppointments = await fetch(
+        "http://localhost:4321/api/appointment/count",
+    );
+    appointments = await responseAppointments.json();
+
+    const responseMedicine = await fetch(
+        "http://localhost:4321/api/medicine/count",
+    );
+    medicines = await responseMedicine.json();
+
+} catch (e) {
+    console.error(e);
+}
 ---
 
 <section class="grid grid-col-10 gap-10 p-7">
@@ -13,29 +43,31 @@ import DonutsCharts from "./graphics/DonutsChart";
         <CardTotals
             class="col-span-6 md:col-span-3 items-center md:items-start"
             icon="DoctorCard"
-            count="800K"
+            count={doctors}
             title="Total Doctors"
         />
         <CardTotals
             class="col-span-6 md:col-span-3 items-center md:items-start"
             icon="PersonCard"
-            count="500"
+            count={patients}
             title="Total Patients"
         />
         <CardTotals
             class="col-span-6 md:col-span-3 items-center md:items-start"
-            icon="IconCard"
-            count="150K"
-            title="Earnings"
+            icon="MedicineIcon"
+            count={medicines}
+            title="Medicines"
         />
         <CardTotals
             class="col-span-6 md:col-span-3 items-center md:items-start"
             icon="CalendarCard"
-            count="100"
+            count={appointments}
             title="Appointments"
         />
     </article>
-    <article class="col-span-10 grid grid-cols-12 gap-3 mx-12 place-items-center">
+    <article
+        class="col-span-10 grid grid-cols-12 gap-3 mx-12 place-items-center"
+    >
         <div
             class="w-[20rem] md:w-full col-span-12 md:col-span-9 rounded-md flex flex-col items-center justify-center py-4"
         >
@@ -47,8 +79,12 @@ import DonutsCharts from "./graphics/DonutsChart";
             <DonutsCharts client:idle />
         </div>
     </article>
-    <article class="col-span-10 grid grid-cols-12 gap-5 md:gap-3 mx-12 place-items-center">
-        <div class="h-[10rem] md:h-[24rem] w-[20rem] md:w-full col-span-12 md:col-span-6 rounded-md">
+    <article
+        class="col-span-10 grid grid-cols-12 gap-5 md:gap-3 mx-12 place-items-center"
+    >
+        <div
+            class="h-[10rem] md:h-[24rem] w-[20rem] md:w-full col-span-12 md:col-span-6 rounded-md"
+        >
             <BarsChart client:idle />
         </div>
         <div
