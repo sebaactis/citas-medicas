@@ -1,4 +1,3 @@
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { type ChartConfig } from "@/components/ui/chart"
 
@@ -6,30 +5,22 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+import { useEffect, useState } from "react"
+
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-5))",
   },
   mobile: {
     label: "Mobile",
@@ -38,36 +29,42 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export default function BarsChart() {
+
+  const [chartData, setChartData] = useState<[]>();
+
+
+  const getChartInfo = async () => {
+    const response = await fetch("http://localhost:4321/api/appointment/groupdepartment")
+    const info = await response.json();
+    setChartData(info);
+  }
+
+  useEffect(() => {
+    getChartInfo();
+  }, [])
+
   return (
     <Card className="w-full h-[24.05rem]">
       <CardHeader>
-        <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Appointments by departments</CardTitle>
+        <CardDescription>Historic</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer className="w-full h-[18rem]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="Name"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <ChartLegend content={<ChartLegendContent />} />
+            <ChartLegend />
             <Bar
-              dataKey="desktop"
-              stackId="a"
+              dataKey="Quantity"
               fill="var(--color-desktop)"
               radius={[0, 0, 4, 4]}
-            />
-            <Bar
-              dataKey="mobile"
-              stackId="a"
-              fill="var(--color-mobile)"
-              radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </ChartContainer>
