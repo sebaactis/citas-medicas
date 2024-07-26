@@ -17,12 +17,8 @@ import {
 import { useEffect, useState } from "react";
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-4))",
-  },
   mobile: {
-    label: "Mobile",
+    label: "count",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig
