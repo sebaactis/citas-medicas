@@ -16,21 +16,21 @@ export default function AddDoctor() {
     const [departments, setDepartments] = useState<Department[]>([]);
     const [specialities, setSpecialities] = useState<Department[]>([]);
 
-    const getDepartments = async () => {
+    const getDepartments = async (pagination = false) => {
         try {
-            const response = await fetch("http://localhost:4321/api/department/departments");
+            const response = await fetch(`http://localhost:4321/api/department/departments?pagination=${pagination}`);
             const data = await response.json();
-            setDepartments(data);
+            setDepartments(data.departments);
         } catch (err) {
             console.error(err)
         }
     };
 
-    const getSpecialities = async () => {
+    const getSpecialities = async (pagination = false) => {
         try {
-            const response = await fetch("http://localhost:4321/api/speciality/specialities");
+            const response = await fetch(`http://localhost:4321/api/speciality/specialities?pagination=${pagination}`);
             const data = await response.json();
-            setSpecialities(data);
+            setSpecialities(data.specialities);
         } catch (err) {
             console.error(err)
         }

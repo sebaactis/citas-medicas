@@ -11,18 +11,22 @@ import { Details, Edit, X } from "../Icons"
 import { useEffect, useState } from "react";
 import type { DoctorWithRelations } from "@/lib/types";
 import { useModal } from "@/hooks/useModal";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "../ui/pagination";
 
 export default function DoctorsList() {
 
     const [doctors, setDoctors] = useState<DoctorWithRelations[]>();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const { onOpen } = useModal();
 
-    const getDoctors = async () => {
+    const getDoctors = async (page = 1, limit = 6, pagination = true) => {
         try {
 
-            const response = await fetch("http://localhost:4321/api/doctor/doctors")
+            const response = await fetch(`http://localhost:4321/api/doctor/doctors?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
-            setDoctors(data);
+            setDoctors(data.doctors);
+            setTotalPages(data.totalPages);
 
         } catch (err) {
             console.error(err);
@@ -30,8 +34,8 @@ export default function DoctorsList() {
     }
 
     useEffect(() => {
-        getDoctors();
-    }, [])
+        getDoctors(currentPage);
+    }, [currentPage])
 
     return (
         <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] 2xl:w-[40.625rem] h-[34.375rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
@@ -66,6 +70,23 @@ export default function DoctorsList() {
                     ))}
                 </TableBody>
             </Table>
+            <div className="mt-7">
+                <Pagination className="dark:text-white">
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
+                        </PaginationItem>
+                        {[...Array(totalPages)].map((_, index) => (
+                            <PaginationItem key={index}>
+                                <PaginationLink onClick={() => setCurrentPage(index + 1)} isActive={index + 1 === currentPage}>{index + 1}</PaginationLink>
+                            </PaginationItem>
+                        ))}
+                        <PaginationItem>
+                            <PaginationNext onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
         </section>
     )
 }

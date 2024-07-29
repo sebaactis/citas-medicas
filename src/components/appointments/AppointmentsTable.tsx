@@ -25,14 +25,17 @@ import { formatDate } from "@/lib/utils";
 export default function AppointmentsTable() {
 
     const [appointments, setAppointments] = useState<AppointmentWithRelations[]>();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const { onOpen } = useModal();
 
-    const getAppointments = async () => {
+    const getAppointments = async (page = 1, limit = 6, pagination = true) => {
         try {
 
-            const response = await fetch("http://localhost:4321/api/appointment/appointments")
+            const response = await fetch(`http://localhost:4321/api/appointment/appointments?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
-            setAppointments(data);
+            setAppointments(data.appointments);
+            setTotalPages(data.totalPages);
 
         } catch (err) {
             console.error(err);
@@ -40,8 +43,8 @@ export default function AppointmentsTable() {
     }
 
     useEffect(() => {
-        getAppointments();
-    }, [])
+        getAppointments(currentPage);
+    }, [currentPage])
 
     return (
         <section
@@ -98,22 +101,18 @@ export default function AppointmentsTable() {
                 </TableBody>
             </Table>
             <div>
-                <Pagination className="dark:text-white">
+            <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>
-                            <PaginationPrevious href="#" />
+                            <PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
                         </PaginationItem>
+                        {[...Array(totalPages)].map((_, index) => (
+                            <PaginationItem key={index}>
+                                <PaginationLink onClick={() => setCurrentPage(index + 1)} isActive={index + 1 === currentPage}>{index + 1}</PaginationLink>
+                            </PaginationItem>
+                        ))}
                         <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#" isActive> 2 </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">3</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationNext href="#" />
+                            <PaginationNext onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} />
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>

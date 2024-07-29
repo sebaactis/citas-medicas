@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react"
 import { Calendar } from "@/components/ui/calendar"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { formatDate } from "date-fns";
 import { type AppointmentIn, type DoctorWithRelations } from "@/lib/types";
 import type { Patient } from "@prisma/client";
 import { toast } from "sonner";
@@ -36,21 +28,21 @@ export function AddAppointment() {
   const [doctors, setDoctors] = useState<DoctorWithRelations[]>();
   const [patients, setPatients] = useState<Patient[]>();
 
-  const getDoctors = async () => {
+  const getDoctors = async (pagination = false) => {
     try {
-      const response = await fetch("http://localhost:4321/api/doctor/doctors");
+      const response = await fetch(`http://localhost:4321/api/doctor/doctors?pagination=${pagination}`);
       const data = await response.json();
-      setDoctors(data);
+      setDoctors(data.doctors);
     } catch (err) {
       console.error(err)
     }
   };
 
-  const getPatients = async () => {
+  const getPatients = async (pagination = false) => {
     try {
-      const response = await fetch("http://localhost:4321/api/patient/patients");
+      const response = await fetch(`http://localhost:4321/api/patient/patients?pagination=${pagination}`)
       const data = await response.json();
-      setPatients(data);
+      setPatients(data.patients);
     } catch (err) {
       console.error(err)
     }
