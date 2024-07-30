@@ -6,7 +6,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-
 import {
     Pagination,
     PaginationContent,
@@ -20,6 +19,7 @@ import { useModal } from "@/hooks/useModal";
 import { Details, Edit, X } from "../Icons";
 import type { AppointmentWithRelations } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import TableSkeleton from "../TableSleketon";
 
 
 export default function AppointmentsTable() {
@@ -27,11 +27,13 @@ export default function AppointmentsTable() {
     const [appointments, setAppointments] = useState<AppointmentWithRelations[]>();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     const { onOpen } = useModal();
 
     const getAppointments = async (page = 1, limit = 6, pagination = true) => {
-        try {
 
+        setIsLoading(true);
+        try {
             const response = await fetch(`http://localhost:4321/api/appointment/appointments?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
             setAppointments(data.appointments);
@@ -39,7 +41,10 @@ export default function AppointmentsTable() {
 
         } catch (err) {
             console.error(err);
+        } finally {
+            setIsLoading(false);
         }
+
     }
 
     useEffect(() => {
@@ -53,7 +58,8 @@ export default function AppointmentsTable() {
             <h3 className="text-center text-2xl font-bold mt-10 dark:text-white uppercase">
                 Appointments
             </h3>
-            <Table >
+            {isLoading && <TableSkeleton />}
+            {!isLoading && <Table >
                 <TableHeader>
                     <TableRow>
                         <TableHead
@@ -99,9 +105,10 @@ export default function AppointmentsTable() {
                         </TableRow>
                     ))}
                 </TableBody>
-            </Table>
+            </Table>}
+
             <div>
-            <Pagination className="dark:text-white">
+                <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />

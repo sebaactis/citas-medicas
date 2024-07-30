@@ -19,8 +19,5 @@ export async function GET() {
         count: app._count.id
     }))
 
-    console.log(results)
-
-
     return new Response(JSON.stringify(results), { status: 200 })
 }

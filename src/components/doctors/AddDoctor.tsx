@@ -38,7 +38,6 @@ export default function AddDoctor() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        console.log(doctor);
         setDoctor(prevState => prevState ? { ...prevState, [name]: value } : null);
     }
 

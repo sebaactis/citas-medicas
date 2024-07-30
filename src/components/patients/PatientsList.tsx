@@ -19,6 +19,7 @@ import { Details, Edit, X } from "../Icons"
 import type { Patient } from "@prisma/client";
 import { useModal } from "@/hooks/useModal";
 import { useEffect, useState } from "react";
+import TableSkeleton from "../TableSleketon";
 
 
 export function PatientsList() {
@@ -26,11 +27,12 @@ export function PatientsList() {
     const [patients, setPatients] = useState<Patient[]>();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     const { onOpen } = useModal();
 
     const getPatients = async (page = 1, limit = 6, pagination = true) => {
+        setIsLoading(true);
         try {
-
             const response = await fetch(`http://localhost:4321/api/patient/patients?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
             setPatients(data.patients);
@@ -38,6 +40,8 @@ export function PatientsList() {
 
         } catch (err) {
             console.error(err);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -48,7 +52,8 @@ export function PatientsList() {
     return (
         <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] md:w-[40.625rem] 2xl:w-[43.75rem] h-[34.375rem] 2xl:h-[50rem] ml-6  rounded-md flex flex-col gap-10 md:p-3 shadow-2xl dark:shadow-slate-700">
             <h3 className="text-center text-2xl font-bold mt-10 dark:text-white uppercase">Patients</h3>
-            <Table>
+            {isLoading && <TableSkeleton />}
+            {!isLoading && <Table>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="font-bold text-black dark:text-white text-center">Name</TableHead>
@@ -76,10 +81,10 @@ export function PatientsList() {
                         </TableRow>
                     ))}
                 </TableBody>
-            </Table>
+            </Table>}
 
             <div>
-            <Pagination className="dark:text-white">
+                <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />

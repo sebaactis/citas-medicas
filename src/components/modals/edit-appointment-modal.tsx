@@ -48,27 +48,27 @@ const EditAppointmentModal = () => {
         }
     }
 
-    const getDoctors = async () => {
+    const getDoctors = async (pagination = false) => {
         try {
-            const response = await fetch("http://localhost:4321/api/doctor/doctors");
+            const response = await fetch(`http://localhost:4321/api/doctor/doctors?pagination=${pagination}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
             }
 
-            const details = await response.json();
-            setDoctors(details);
+            const data = await response.json();
+            setDoctors(data.doctors);
 
         } catch (err) {
             console.error(err);
         }
     }
 
-    const getPatients = async () => {
+    const getPatients = async (pagination = false) => {
         try {
-            const response = await fetch("http://localhost:4321/api/patient/patients");
+            const response = await fetch(`http://localhost:4321/api/patient/patients?pagination=${pagination}`);
             const data = await response.json();
-            setPatients(data);
+            setPatients(data.patients);
         } catch (err) {
             console.error(err)
         }

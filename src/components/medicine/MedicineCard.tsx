@@ -1,4 +1,3 @@
-import { Toaster } from "sonner";
 import { Pill, Details, Edit, X } from "../Icons";
 import { useModal } from "@/hooks/useModal";
 
