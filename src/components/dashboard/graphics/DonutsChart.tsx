@@ -41,15 +41,15 @@ export default function DonutsChart() {
   }, [])
   
   return (
-    <Card className="flex flex-col w-full h-[26rem]">
+    <Card className="flex flex-col w-full h-[26rem] justify-center items-center">
       <CardHeader className="items-center pb-0">
         <CardTitle>Appointments by doctors</CardTitle>
         <CardDescription>Historic</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex-1 pb-0 justify-center items-center">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[300px]"
+          className="mx-auto aspect-square max-h-[300px] xl:h-[240px]"
         >
           <PieChart>
             <ChartTooltip

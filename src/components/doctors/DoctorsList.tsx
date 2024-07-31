@@ -42,7 +42,7 @@ export default function DoctorsList() {
     }, [currentPage])
 
     return (
-        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] 2xl:w-[43.625rem] h-[34.375rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
+        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] xl:w-[35rem] 2xl:w-[43.625rem] h-[34.375rem] xl:h-[42rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
             <h3 className="text-center text-2xl font-bold my-10 dark:text-white">DOCTORS</h3>
 
             {isLoading && <TableSkeleton />}
@@ -79,7 +79,7 @@ export default function DoctorsList() {
                 </Table>
             }
 
-            <div className="mt-7">
+            <div className="mt-7 xl:mt-10">
                 <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>

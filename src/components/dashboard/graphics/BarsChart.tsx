@@ -44,13 +44,13 @@ export default function BarsChart() {
   }, [])
 
   return (
-    <Card className="w-full h-[24.05rem]">
+    <Card className="w-full h-[24.05rem] xl:h-[31.5rem]">
       <CardHeader>
         <CardTitle>Appointments by departments</CardTitle>
         <CardDescription>Historic</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer className="w-full h-[18rem]" config={chartConfig}>
+        <ChartContainer className="w-full h-[18rem] xl:h-[22rem]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis

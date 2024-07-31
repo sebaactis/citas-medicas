@@ -88,9 +88,9 @@ export default function AddDoctor() {
     }, [])
 
     return (
-        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] 2xl:w-[40.625rem] h-[34.375rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
+        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] 2xl:w-[40.625rem] h-[34.375rem] xl:h-[42rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
             <h3 className="text-center text-2xl font-bold my-10 dark:text-white uppercase">Add Doctor</h3>
-            <form className="flex flex-col w-[15rem] 2xl:w-[31.25rem] m-auto gap-5 items-center">
+            <form className="flex flex-col w-[15rem] 2xl:w-[31.25rem] m-auto xl:gap-10 gap-5 items-center">
                 <label htmlFor="name" className="font-bold w-full dark:text-white">Name</label>
                 <Input className="bg-slate-200 dark:bg-slate-700 dark:text-white" type="text" name="name" value={doctor?.name} onChange={handleChange} />
                 <label htmlFor="departmentId" className="font-bold w-full dark:text-white">Department</label>

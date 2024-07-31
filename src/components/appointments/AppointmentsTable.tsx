@@ -53,7 +53,7 @@ export default function AppointmentsTable() {
 
     return (
         <section
-            className=" bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] md:w-[40.625rem] 2xl:w-[43.75rem] h-[34.375rem] 2xl:h-[50rem] ml-10 2xl:ml-20 rounded-md flex flex-col gap-10 p-3 shadow-2xl dark:shadow-slate-700"
+            className=" bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] md:w-[40.625rem] 2xl:w-[43.75rem] h-[34.375rem] xl:h-[47rem] 2xl:h-[50rem] ml-10 2xl:ml-20 rounded-md flex flex-col gap-10 p-3 shadow-2xl dark:shadow-slate-700"
         >
             <h3 className="text-center text-2xl font-bold mt-10 dark:text-white uppercase">
                 Appointments

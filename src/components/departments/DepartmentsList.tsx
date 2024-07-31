@@ -41,7 +41,7 @@ export default function DepartmentsList() {
     }, [currentPage]);
 
     return (
-        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] 2xl:w-[40.625rem] h-[34.375rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
+        <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] xl:w-[35rem] 2xl:w-[40.625rem] h-[34.375rem] xl:h-[42rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700 ml-8 md:ml-20">
             <h3 className="text-center text-2xl font-bold mt-10 dark:text-white">DEPARTMENTS</h3>
             {isLoading && <TableSkeleton />}
             {!isLoading && <Table className="mt-10">
