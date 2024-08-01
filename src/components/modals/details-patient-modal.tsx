@@ -9,6 +9,7 @@ import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import type { DoctorWithRelations } from "@/lib/types";
 import type { Patient } from "@prisma/client";
+import Spinner from "../Spinner";
 
 const PatientDetailsModal = () => {
 
@@ -32,6 +33,8 @@ const PatientDetailsModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500))
+
             const details = await response.json();
 
             setPatient(details);
@@ -54,14 +57,17 @@ const PatientDetailsModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
                     <DialogDescription>
-                        {loading && <p>Loading...</p>}
+                        {loading && <Spinner />}
                         {patient !== undefined &&
-                            <div className="flex flex-col gap-2">
-                                <p className="font-bold dark:text-white"> Patient ID: </p> <span>{patient.id}</span>
-                                <p className="font-bold dark:text-white"> Name: </p> <span>{patient.name}</span>
-                                <p className="font-bold dark:text-white"> Age: </p> <span>{patient.age}</span>
-                                <p className="font-bold dark:text-white"> Email: </p> <span>{patient.email}</span>
-                            </div>
+                            <>
+                                {!loading && <div className="flex flex-col gap-2">
+                                    <p className="font-bold dark:text-white"> Patient ID: </p> <span>{patient.id}</span>
+                                    <p className="font-bold dark:text-white"> Name: </p> <span>{patient.name}</span>
+                                    <p className="font-bold dark:text-white"> Age: </p> <span>{patient.age}</span>
+                                    <p className="font-bold dark:text-white"> Email: </p> <span>{patient.email}</span>
+                                </div>}
+                            </>
+
                         }
                     </DialogDescription>
                 </DialogHeader>

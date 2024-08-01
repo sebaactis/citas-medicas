@@ -9,6 +9,7 @@ import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import type { AppointmentWithRelations } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import Spinner from "../Spinner";
 
 const AppointmentDetailsModal = () => {
 
@@ -32,6 +33,8 @@ const AppointmentDetailsModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500));
+
             const details = await response.json();
 
             setAppointment(details);
@@ -54,16 +57,18 @@ const AppointmentDetailsModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
                     <DialogDescription>
-                        {loading && <p>Loading...</p>}
+                        {loading && <Spinner />}
                         {appointment !== undefined &&
-                            <div className="flex flex-col gap-4">
-                                <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.id}</span>
-                                <p className="font-bold dark:text-white"> Date: </p> <span>{formatDate(appointment.date.toString())}</span>
-                                <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.doctorId}</span>
-                                <p className="font-bold dark:text-white"> Doctor Name: </p> <span>{appointment.Doctor.name}</span>
-                                <p className="font-bold dark:text-white"> Patient ID: </p> <span>{appointment.patientId}</span>
-                                <p className="font-bold dark:text-white"> Patient Name: </p> <span>{appointment.patient.name}</span>
-                            </div>
+                            <>
+                                {!loading && <div className="flex flex-col gap-4">
+                                    <p className="font-bold dark:text-white"> Appointment ID: </p> <span>{appointment.id}</span>
+                                    <p className="font-bold dark:text-white"> Date: </p> <span>{formatDate(appointment.date.toString())}</span>
+                                    <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.doctorId}</span>
+                                    <p className="font-bold dark:text-white"> Doctor Name: </p> <span>{appointment.Doctor.name}</span>
+                                    <p className="font-bold dark:text-white"> Patient ID: </p> <span>{appointment.patientId}</span>
+                                    <p className="font-bold dark:text-white"> Patient Name: </p> <span>{appointment.patient.name}</span>
+                                </div>}
+                            </>
                         }
                     </DialogDescription>
                 </DialogHeader>

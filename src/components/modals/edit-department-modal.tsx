@@ -9,6 +9,7 @@ import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import { type Department} from "@prisma/client";
 import { toast } from 'sonner'
+import Spinner from "../Spinner";
 
 const EditDeparmentModal = () => {
 
@@ -20,6 +21,7 @@ const EditDeparmentModal = () => {
     const { id } = data;
 
     const GetDetails = async (deparmentId: string) => {
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:4321/api/department/${deparmentId}`);
 
@@ -27,10 +29,14 @@ const EditDeparmentModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500))
+
             const details = await response.json();
             setDepartment(details);
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -46,7 +52,6 @@ const EditDeparmentModal = () => {
 
     const handleUpdate = async (deparmentId: string) => {
 
-        setLoading(true);
         try {
 
             const response = await fetch(`http://localhost:4321/api/department/${deparmentId}`, {
@@ -74,8 +79,6 @@ const EditDeparmentModal = () => {
 
         } catch (err) {
             console.error(err);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -89,9 +92,10 @@ const EditDeparmentModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Edit Deparment</DialogTitle>
                     <DialogDescription>
-                        {loading && "Enviando..."}
+                        {loading && <Spinner />}
                         {department !== undefined &&
-                            <div className="flex flex-col gap-2">
+                        <>
+                        {!loading && <div className="flex flex-col gap-2">
                                 {department !== null &&
                                     <div className="flex flex-col gap-2 items-center">
                                         <label htmlFor="name" className="font-bold w-full">Name</label>
@@ -105,7 +109,9 @@ const EditDeparmentModal = () => {
                                         <button className="mt-3 bg-green-600 px-4 py-2.5 hover:bg-green-500 transition-all text-white rounded-lg font-bold" onClick={() => handleUpdate(department.id)}>Save</button>
                                     </div>
                                 }
-                            </div>
+                            </div>}
+                        </>
+                            
                         }
                     </DialogDescription>
                 </DialogHeader>

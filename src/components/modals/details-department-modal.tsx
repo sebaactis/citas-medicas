@@ -8,6 +8,7 @@ import {
 import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import { type Department } from "@prisma/client";
+import Spinner from "../Spinner";
 
 const DeparmentDetailsModal = () => {
 
@@ -23,13 +24,15 @@ const DeparmentDetailsModal = () => {
     }
 
     const GetDetails = async (deparmentId: string) => {
+        setLoading(true);
         try {
-            setLoading(true);
             const response = await fetch(`http://localhost:4321/api/department/${deparmentId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
             }
+
+            await new Promise(resolve => setTimeout(resolve, 500))
 
             const details = await response.json();
             setDeparment(details);
@@ -52,12 +55,14 @@ const DeparmentDetailsModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
                     <DialogDescription>
-                        {loading && <p>Loading...</p>}
+                        {loading && <Spinner />}
                         {deparment !== undefined &&
-                            <div className="flex flex-col gap-2">
+                        <>
+                        {!loading && <div className="flex flex-col gap-2">
                                 <p className="font-bold dark:text-white"> Department ID: </p> <span>{deparment.id}</span>
                                 <p className="font-bold dark:text-white"> Name: </p> <span>{deparment.name}</span>
-                            </div>
+                            </div>}
+                        </>
                         }
                     </DialogDescription>
                 </DialogHeader>

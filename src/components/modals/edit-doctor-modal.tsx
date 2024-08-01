@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from 'sonner'
 import type { DoctorWithRelations } from "@/lib/types";
 import { type Department } from "@prisma/client";
+import Spinner from "../Spinner";
 
 const EditDoctorModal = () => {
 
@@ -23,6 +24,7 @@ const EditDoctorModal = () => {
     const { id } = data;
 
     const getDoctorDetails = async (doctorId: string) => {
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:4321/api/doctor/${doctorId}`);
 
@@ -30,11 +32,15 @@ const EditDoctorModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500))
+
             const details = await response.json();
             setDoctor(details);
 
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -114,42 +120,45 @@ const EditDoctorModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Edit Doctor</DialogTitle>
                     <DialogDescription>
-                        {loading && "Enviando..."}
+                        {loading && <Spinner />}
                         {doctor !== undefined &&
-                            <div className="flex flex-col gap-2">
-                                {doctor !== null &&
-                                    <div className="flex flex-col gap-4 items-center">
-                                        <label htmlFor="name" className="font-bold w-full">Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={doctor.name}
-                                            onChange={handleChange}
-                                            className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full"
-                                        />
+                            <>
+                                {!loading && <div className="flex flex-col gap-2">
+                                    {doctor !== null &&
+                                        <div className="flex flex-col gap-4 items-center">
+                                            <label htmlFor="name" className="font-bold w-full">Name</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={doctor.name}
+                                                onChange={handleChange}
+                                                className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full"
+                                            />
 
-                                        <label htmlFor="departmentId" className="font-bold w-full">Department</label>
-                                        <select name="departmentId" value={doctor.departmentId} onChange={handleChange} className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full">
-                                            {departments.map((department) => (
-                                                <option key={department.id} value={department.id}>
-                                                    {department.name}
-                                                </option>
-                                            ))}
-                                        </select>
+                                            <label htmlFor="departmentId" className="font-bold w-full">Department</label>
+                                            <select name="departmentId" value={doctor.departmentId} onChange={handleChange} className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full">
+                                                {departments.map((department) => (
+                                                    <option key={department.id} value={department.id}>
+                                                        {department.name}
+                                                    </option>
+                                                ))}
+                                            </select>
 
-                                        <label htmlFor="specialtieId" className="font-bold w-full">Speciality</label>
-                                        <select name="specialtieId" value={doctor.specialtieId} onChange={handleChange} className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full">
-                                            {specialities.map((speciality) => (
-                                                <option key={speciality.id} value={speciality.id}>
-                                                    {speciality.name}
-                                                </option>
-                                            ))}
-                                        </select>
+                                            <label htmlFor="specialtieId" className="font-bold w-full">Speciality</label>
+                                            <select name="specialtieId" value={doctor.specialtieId} onChange={handleChange} className="bg-slate-200 dark:bg-slate-700 dark:text-white p-2 rounded-md text-black w-full">
+                                                {specialities.map((speciality) => (
+                                                    <option key={speciality.id} value={speciality.id}>
+                                                        {speciality.name}
+                                                    </option>
+                                                ))}
+                                            </select>
 
-                                        <button className="mt-3 bg-green-600 px-4 py-2.5 hover:bg-green-500 transition-all text-white rounded-lg font-bold" onClick={() => handleUpdate(doctor.id)}>Save</button>
-                                    </div>
-                                }
-                            </div>
+                                            <button className="mt-3 bg-green-600 px-4 py-2.5 hover:bg-green-500 transition-all text-white rounded-lg font-bold" onClick={() => handleUpdate(doctor.id)}>Save</button>
+                                        </div>
+                                    }
+                                </div>}
+                            </>
+
                         }
                     </DialogDescription>
                 </DialogHeader>

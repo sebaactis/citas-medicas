@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from 'sonner'
 import type { AppointmentWithRelations } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import Spinner from "../Spinner";
 
 const DeleteAppointmentModal = () => {
 
@@ -17,9 +18,11 @@ const DeleteAppointmentModal = () => {
 
     const { isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "appointmentDelete"
+    const [loading, setLoading] = useState(false);
     const { id } = data;
 
     const GetDetails = async (appointmentId: string) => {
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`);
 
@@ -27,11 +30,15 @@ const DeleteAppointmentModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500));
+
             const details = await response.json();
 
             setAppointment(details);
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -78,25 +85,28 @@ const DeleteAppointmentModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Delete Appointment</DialogTitle>
                     <DialogDescription>
+                        {loading && <Spinner />}
                         <div className="flex flex-col gap-2">
                             {appointment !== undefined &&
-                                <div className="flex flex-col gap-4 items-center">
-                                    <p className="py-4 font-bold dark:text-white dark:opacity-85">¿Estás seguro que deseas eliminar el siguiente registro?</p>
-                                    <div className="flex flex-col gap-4 bg-slate-200 dark:bg-slate-600 p-6 rounded-md">
-                                        <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.id}</span>
-                                        <p className="font-bold dark:text-white"> Date: </p> <span>{formatDate(appointment.date.toString())}</span>
-                                        <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.doctorId}</span>
-                                        <p className="font-bold dark:text-white"> Doctor Name: </p> <span>{appointment.Doctor.name}</span>
-                                        <p className="font-bold dark:text-white"> Patient ID: </p> <span>{appointment.patientId}</span>
-                                        <p className="font-bold dark:text-white"> Patient Name: </p> <span>{appointment.patient.name}</span>
-                                    </div>
+                                <>
+                                    {!loading && <div className="flex flex-col gap-4 items-center">
+                                        <p className="py-4 font-bold dark:text-white dark:opacity-85">¿Estás seguro que deseas eliminar el siguiente registro?</p>
+                                        <div className="flex flex-col gap-4 bg-slate-200 dark:bg-slate-600 p-6 rounded-md">
+                                            <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.id}</span>
+                                            <p className="font-bold dark:text-white"> Date: </p> <span>{formatDate(appointment.date.toString())}</span>
+                                            <p className="font-bold dark:text-white"> Doctor ID: </p> <span>{appointment.doctorId}</span>
+                                            <p className="font-bold dark:text-white"> Doctor Name: </p> <span>{appointment.Doctor.name}</span>
+                                            <p className="font-bold dark:text-white"> Patient ID: </p> <span>{appointment.patientId}</span>
+                                            <p className="font-bold dark:text-white"> Patient Name: </p> <span>{appointment.patient.name}</span>
+                                        </div>
 
-                                    <div className="flex gap-3 items-center">
-                                        <button className="mt-3 bg-red-600 px-4 py-2.5 hover:bg-red-500 transition-all text-white rounded-lg font-bold" onClick={() => handleDelete(appointment.id)}>Confirm</button>
-                                        <button className="mt-3 bg-sky-600 px-4 py-2.5 hover:bg-sky-500 transition-all text-white rounded-lg font-bold" onClick={() => handleClose()}>Cancel</button>
-                                    </div>
-                                </div>
+                                        <div className="flex gap-3 items-center">
+                                            <button className="mt-3 bg-red-600 px-4 py-2.5 hover:bg-red-500 transition-all text-white rounded-lg font-bold" onClick={() => handleDelete(appointment.id)}>Confirm</button>
+                                            <button className="mt-3 bg-sky-600 px-4 py-2.5 hover:bg-sky-500 transition-all text-white rounded-lg font-bold" onClick={() => handleClose()}>Cancel</button>
+                                        </div>
+                                    </div>}
 
+                                </>
                             }
                         </div>
                     </DialogDescription>

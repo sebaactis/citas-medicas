@@ -8,6 +8,7 @@ import {
 import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import { type Medicine } from "@prisma/client";
+import Spinner from "../Spinner";
 
 const MedicineDetailsModal = () => {
 
@@ -23,13 +24,15 @@ const MedicineDetailsModal = () => {
     }
 
     const GetDetails = async (medicineId: string) => {
+        setLoading(true);
         try {
-            setLoading(true);
             const response = await fetch(`http://localhost:4321/api/medicine/${medicineId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
             }
+
+            await new Promise(resolve => setTimeout(resolve, 500))
 
             const details = await response.json();
             setMedicine(details);
@@ -52,13 +55,15 @@ const MedicineDetailsModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Details</DialogTitle>
                     <DialogDescription>
-                        {loading && <p>Loading...</p>}
+                        {loading && <Spinner />}
                         {medicine !== undefined &&
-                            <div className="flex flex-col gap-2">
-                                <p className="font-bold dark:text-white"> Medicine ID: </p> <span>{medicine.id}</span>
-                                <p className="font-bold dark:text-white"> Name: </p> <span>{medicine.name}</span>
-                                <p className="font-bold dark:text-white"> Price: </p> <span>${medicine.price.toString()}</span>
-                            </div>
+                            <>
+                                {!loading && <div className="flex flex-col gap-2">
+                                    <p className="font-bold dark:text-white"> Medicine ID: </p> <span>{medicine.id}</span>
+                                    <p className="font-bold dark:text-white"> Name: </p> <span>{medicine.name}</span>
+                                    <p className="font-bold dark:text-white"> Price: </p> <span>${medicine.price.toString()}</span>
+                                </div>}
+                            </>
                         }
                     </DialogDescription>
                 </DialogHeader>

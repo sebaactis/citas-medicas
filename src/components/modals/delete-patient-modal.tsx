@@ -9,6 +9,7 @@ import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
 import { type Patient } from "@prisma/client";
 import { toast } from 'sonner'
+import Spinner from "../Spinner";
 
 const DeletePatientModal = () => {
 
@@ -16,9 +17,11 @@ const DeletePatientModal = () => {
 
     const { isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "patientDelete"
+    const [loading, setLoading] = useState(false);
     const { id } = data;
 
     const GetDetails = async (patientId: string) => {
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:4321/api/patient/${patientId}`);
 
@@ -26,10 +29,14 @@ const DeletePatientModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500))
+
             const details = await response.json();
             setPatient(details);
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -76,8 +83,10 @@ const DeletePatientModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Delete Patient</DialogTitle>
                     <DialogDescription>
+                        {loading && <Spinner />}
                         {patient !== undefined &&
-                            <div className="flex flex-col gap-2">
+                        <>
+                        {!loading && <div className="flex flex-col gap-2">
                                 {patient !== null &&
                                     <div className="flex flex-col gap-4 items-center">
                                         <p className="py-4 font-bold dark:text-white dark:opacity-85">¿Estás seguro que deseas eliminar el siguiente registro?</p>
@@ -94,7 +103,9 @@ const DeletePatientModal = () => {
                                         </div>
                                     </div>
                                 }
-                            </div>
+                            </div>}
+                        </>
+                            
                         }
                     </DialogDescription>
                 </DialogHeader>

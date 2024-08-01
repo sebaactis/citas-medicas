@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 import type { AppointmentIn, DoctorWithRelations } from "@/lib/types";
 import { type Patient } from "@prisma/client";
 import { Calendar } from "../ui/calendar";
+import Spinner from "../Spinner";
 
 const EditAppointmentModal = () => {
 
@@ -38,6 +39,8 @@ const EditAppointmentModal = () => {
                 throw new Error("Response error");
             }
 
+            await new Promise(resolve => setTimeout(resolve, 500));
+
             const details = await response.json();
 
             setAppointment(details);
@@ -55,6 +58,8 @@ const EditAppointmentModal = () => {
             if (!response.ok) {
                 throw new Error("Response error");
             }
+
+
 
             const data = await response.json();
             setDoctors(data.doctors);
@@ -147,11 +152,12 @@ const EditAppointmentModal = () => {
                 <DialogHeader>
                     <DialogTitle className="text-center text-2xl pb-2">Edit Appointment</DialogTitle>
                     <DialogDescription>
-                        {loading && "Enviando..."}
+                        {loading && <Spinner />}
                         {appointment !== undefined &&
                             <div className="flex flex-col gap-2">
                                 {appointment !== null &&
-                                    <div className="flex flex-col gap-2 items-center">
+                                    <>
+                                        {!loading && <div className="flex flex-col gap-2 items-center">
                                             <Calendar
                                                 mode="single"
                                                 selected={appointment.date}
@@ -178,7 +184,9 @@ const EditAppointmentModal = () => {
 
                                             </div>
                                             <button onClick={() => handleUpdate(appointment.id)} className="bg-green-500 dark:bg-green-400 px-4 py-2 rounded-md font-black hover:bg-green-400 dark:hover:bg-green-500 transition-all text-black"> SUBMIT </button>
-                                    </div>
+                                        </div>}
+
+                                    </>
                                 }
                             </div>
                         }
