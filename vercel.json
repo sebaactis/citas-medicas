@@ -1,7 +1,11 @@
 {
-    "functions": {
-      "pages/api/**/*.ts": {
-        "runtime": "nodejs18.x"
-      }
+  "functions": {
+    "pages/api/**/*.ts": {
+      "runtime": "nodejs18.x"
     }
-  }
+  },
+  "builds": [
+    { "src": "src/**/*.ts", "use": "@vercel/node" },
+    { "src": "src/**/*.js", "use": "@vercel/node" }
+  ]
+}
