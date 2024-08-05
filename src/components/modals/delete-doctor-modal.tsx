@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/dialog"
 import { useModal } from "@/hooks/useModal"
 import { useEffect, useState } from "react";
-import { type Doctor } from "@prisma/client";
 import { toast } from 'sonner'
 import type { DoctorWithRelations } from "@/lib/types";
 import Spinner from "../Spinner";

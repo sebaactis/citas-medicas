@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input"
-import type { Department, Doctor } from "@prisma/client";
+import type { Department } from "@prisma/client";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 

@@ -34,8 +34,6 @@ export async function PUT({ params, request }: APIContext) {
 
     const data = await request.json();
 
-    console.log(data);
-
     try {
         const appointment = await db.appointment.findFirst({
             where: {
@@ -55,8 +53,7 @@ export async function PUT({ params, request }: APIContext) {
             )
         }
 
-
-        const prueba = await db.appointment.update({
+        await db.appointment.update({
             where: {
                 id: appointment.id
             },

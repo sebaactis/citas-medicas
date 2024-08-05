@@ -19,7 +19,7 @@ const CreateMedicineModal = () => {
     const [medicine, setMedicine] = useState<MedicineCreate | null>({ name: "Medicine name", price: 0 });
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { isOpen, onClose, type, data } = useModal();
+    const { isOpen, onClose, type } = useModal();
     const isModalOpen = isOpen && type === "medicineCreate"
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

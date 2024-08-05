@@ -1,5 +1,11 @@
 import { db } from "@/lib/db";
-import { formatDate } from "@/lib/utils";
+
+interface AppointmentCountsByDepartment {
+  [key: string]: {
+    departmentName: string;
+    appointmentCount: number;
+  };
+}
 
 export async function GET() {
     const appointmentsByDoctor = await db.appointment.groupBy({
@@ -28,7 +34,7 @@ export async function GET() {
         }
       });
 
-      const appointmentCountsByDepartment = doctorsWithDepartments.reduce((acc, doctor) => {
+      const appointmentCountsByDepartment = doctorsWithDepartments.reduce<AppointmentCountsByDepartment>((acc, doctor) => {
         const departmentId = doctor.department.id;
         const departmentName = doctor.department.name;
       

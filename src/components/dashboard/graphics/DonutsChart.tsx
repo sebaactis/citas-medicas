@@ -1,5 +1,3 @@
-import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import { Cell, Label, Pie, PieChart } from "recharts"
 import { type ChartConfig } from "@/components/ui/chart"
 

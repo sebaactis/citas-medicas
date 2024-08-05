@@ -28,11 +28,6 @@ export async function POST({ request }: APIContext) {
                 statusText: "The speciality of the doctor cannot be blank"
             })
         }
-
-        const department = await db.department.findFirst({
-
-        })
-
         const create = await db.doctor.create({
             data: {
                 name: doctor.name,

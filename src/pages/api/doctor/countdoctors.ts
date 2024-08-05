@@ -1,5 +1,9 @@
 import { db } from "@/lib/db";
 
+interface DoctorMap {
+    [key: string]: string;
+  }
+
 export async function GET() {
     const appointmentsByDoctor = await db.appointment.groupBy({
         by: ['doctorId'],
@@ -26,7 +30,7 @@ export async function GET() {
         }
     })
 
-    const doctorMap = doctors.reduce((map, doctor) => {
+    const doctorMap = doctors.reduce<DoctorMap>((map, doctor) => {
         map[doctor.id] = doctor.name;
         return map;
     }, {});
