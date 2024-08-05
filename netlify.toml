@@ -1,0 +1,6 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[context.production.environment]
+  DATABASE_URL = "postgresql://postgres.gyuikvvjrothumjbfknz:jio6IhMlGRqT684y@aws-0-sa-east-1.pooler.supabase.com:5432/postgres"
