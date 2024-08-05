@@ -29,7 +29,7 @@ export default function DonutsChart() {
 
 
   const getChartInfo = async () => {
-    const response = await fetch("http://localhost:4321/api/doctor/countdoctors")
+    const response = await fetch("https://citasmedicasdash.netlify.app/api/doctor/countdoctors")
     const info = await response.json();
     setChartData(info);
   }

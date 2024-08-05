@@ -24,7 +24,7 @@ const DeleteAppointmentModal = () => {
     const GetDetails = async (appointmentId: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/appointment/${appointmentId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
@@ -51,7 +51,7 @@ const DeleteAppointmentModal = () => {
     const handleDelete = async (appointmentId: string) => {
 
         try {
-            const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`, {
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/appointment/${appointmentId}`, {
                 method: "DELETE"
             })
 

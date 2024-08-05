@@ -12,22 +12,22 @@ let medicines = 0;
 
 try {
     const responseDoctors = await fetch(
-        "http://localhost:4321/api/doctor/count",
+        "https://citasmedicasdash.netlify.app/api/doctor/count",
     );
     doctors = await responseDoctors.json();
 
     const responsePatients = await fetch(
-        "http://localhost:4321/api/patient/count",
+        "https://citasmedicasdash.netlify.app/api/patient/count",
     );
     patients = await responsePatients.json();
 
     const responseAppointments = await fetch(
-        "http://localhost:4321/api/appointment/count",
+        "https://citasmedicasdash.netlify.app/api/appointment/count",
     );
     appointments = await responseAppointments.json();
 
     const responseMedicine = await fetch(
-        "http://localhost:4321/api/medicine/count",
+        "https://citasmedicasdash.netlify.app/api/medicine/count",
     );
     medicines = await responseMedicine.json();
 

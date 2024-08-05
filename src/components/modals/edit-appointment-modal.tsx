@@ -33,7 +33,7 @@ const EditAppointmentModal = () => {
     const GetDetails = async (appointmentId: string) => {
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/appointment/${appointmentId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
@@ -53,7 +53,7 @@ const EditAppointmentModal = () => {
 
     const getDoctors = async (pagination = false) => {
         try {
-            const response = await fetch(`http://localhost:4321/api/doctor/doctors?pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/doctor/doctors?pagination=${pagination}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
@@ -71,7 +71,7 @@ const EditAppointmentModal = () => {
 
     const getPatients = async (pagination = false) => {
         try {
-            const response = await fetch(`http://localhost:4321/api/patient/patients?pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/patient/patients?pagination=${pagination}`);
             const data = await response.json();
             setPatients(data.patients);
         } catch (err) {
@@ -109,7 +109,7 @@ const EditAppointmentModal = () => {
 
         try {
 
-            const response = await fetch(`http://localhost:4321/api/appointment/${appointmentId}`, {
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/appointment/${appointmentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

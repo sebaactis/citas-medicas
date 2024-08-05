@@ -18,7 +18,7 @@ export default function AddDoctor() {
 
     const getDepartments = async (pagination = false) => {
         try {
-            const response = await fetch(`http://localhost:4321/api/department/departments?pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/department/departments?pagination=${pagination}`);
             const data = await response.json();
             setDepartments(data.departments);
         } catch (err) {
@@ -28,7 +28,7 @@ export default function AddDoctor() {
 
     const getSpecialities = async (pagination = false) => {
         try {
-            const response = await fetch(`http://localhost:4321/api/speciality/specialities?pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/speciality/specialities?pagination=${pagination}`);
             const data = await response.json();
             setSpecialities(data.specialities);
         } catch (err) {
@@ -46,7 +46,7 @@ export default function AddDoctor() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:4321/api/doctor/create", {
+            const response = await fetch("https://citasmedicasdash.netlify.app/api/doctor/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

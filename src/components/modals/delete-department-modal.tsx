@@ -23,7 +23,7 @@ const DeleteDeparmentModal = () => {
     const GetDetails = async (departmentId: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/department/${departmentId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/department/${departmentId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
@@ -49,7 +49,7 @@ const DeleteDeparmentModal = () => {
     const handleDelete = async (departmentId: string) => {
 
         try {
-            const response = await fetch(`http://localhost:4321/api/department/${departmentId}`, {
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/department/${departmentId}`, {
                 method: "DELETE"
             })
 

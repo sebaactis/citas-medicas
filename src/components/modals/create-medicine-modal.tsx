@@ -31,7 +31,7 @@ const CreateMedicineModal = () => {
         setLoading(true);
         try {
 
-            const response = await fetch(`http://localhost:4321/api/medicine/create`, {
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/medicine/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

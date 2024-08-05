@@ -25,7 +25,7 @@ export default function DepartmentsList() {
     const getDepartments = async (page = 1, limit = 6, pagination = true) => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/department/departments?page=${page}&limit=${limit}&pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/department/departments?page=${page}&limit=${limit}&pagination=${pagination}`);
             const data = await response.json();
             setDepartments(data.departments);
             setTotalPages(data.totalPages);

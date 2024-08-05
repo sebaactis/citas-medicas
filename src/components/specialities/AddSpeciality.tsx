@@ -19,7 +19,7 @@ export default function AddSpeciality() {
                 name: speciality
             }
 
-            const response = await fetch("http://localhost:4321/api/speciality/create", {
+            const response = await fetch("https://citasmedicasdash.netlify.app/api/speciality/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

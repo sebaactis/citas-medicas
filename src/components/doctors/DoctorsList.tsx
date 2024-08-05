@@ -25,7 +25,7 @@ export default function DoctorsList() {
     const getDoctors = async (page = 1, limit = 6, pagination = true) => {
         try {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:4321/api/doctor/doctors?page=${page}&limit=${limit}&pagination=${pagination}`)
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/doctor/doctors?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
             setDoctors(data.doctors);
             setTotalPages(data.totalPages);

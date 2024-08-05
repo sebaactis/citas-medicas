@@ -31,7 +31,7 @@ export function AddAppointment() {
 
   const getDoctors = async (pagination = false) => {
     try {
-      const response = await fetch(`http://localhost:4321/api/doctor/doctors?pagination=${pagination}`);
+      const response = await fetch(`https://citasmedicasdash.netlify.app/api/doctor/doctors?pagination=${pagination}`);
       const data = await response.json();
       setDoctors(data.doctors);
     } catch (err) {
@@ -41,7 +41,7 @@ export function AddAppointment() {
 
   const getPatients = async (pagination = false) => {
     try {
-      const response = await fetch(`http://localhost:4321/api/patient/patients?pagination=${pagination}`)
+      const response = await fetch(`https://citasmedicasdash.netlify.app/api/patient/patients?pagination=${pagination}`)
       const data = await response.json();
       setPatients(data.patients);
     } catch (err) {
@@ -76,7 +76,7 @@ export function AddAppointment() {
 
 
     try {
-      const response = await fetch("http://localhost:4321/api/appointment/create", {
+      const response = await fetch("https://citasmedicasdash.netlify.app/api/appointment/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

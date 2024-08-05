@@ -26,7 +26,7 @@ export default function SpecialitiesList() {
     const getSpecialities = async (page = 1, limit = 6, pagination = true) => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/speciality/specialities?page=${page}&limit=${limit}&pagination=${pagination}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/speciality/specialities?page=${page}&limit=${limit}&pagination=${pagination}`);
             const data = await response.json();
             setDepartments(data.specialities);
             setTotalPages(data.totalPages);

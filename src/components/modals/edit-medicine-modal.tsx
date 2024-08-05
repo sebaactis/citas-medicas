@@ -23,7 +23,7 @@ const EditMedicineModal = () => {
     const GetDetails = async (medicineId: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/medicine/${medicineId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/medicine/${medicineId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");
@@ -54,7 +54,7 @@ const EditMedicineModal = () => {
 
         try {
 
-            const response = await fetch(`http://localhost:4321/api/medicine/${medicineId}`, {
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/medicine/${medicineId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

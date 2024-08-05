@@ -34,7 +34,7 @@ export default function AppointmentsTable() {
 
         setIsLoading(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/appointment/appointments?page=${page}&limit=${limit}&pagination=${pagination}`)
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/appointment/appointments?page=${page}&limit=${limit}&pagination=${pagination}`)
             const data = await response.json();
             setAppointments(data.appointments);
             setTotalPages(data.totalPages);

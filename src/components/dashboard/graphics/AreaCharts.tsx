@@ -27,7 +27,7 @@ export default function AreaCharts() {
   const [chartData, setChartData] = useState<[]>();
 
   const getChartInfo = async () => {
-    const response = await fetch("http://localhost:4321/api/appointment/groupdate")
+    const response = await fetch("https://citasmedicasdash.netlify.app/api/appointment/groupdate")
     const info = await response.json();
     setChartData(info);
   }

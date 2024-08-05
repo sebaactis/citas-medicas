@@ -26,7 +26,7 @@ const SpecialityDetailsModal = () => {
     const GetDetails = async (specialityId: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:4321/api/speciality/${specialityId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/speciality/${specialityId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");

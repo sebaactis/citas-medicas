@@ -22,7 +22,7 @@ export default function AddPatient() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:4321/api/patient/create", {
+            const response = await fetch("https://citasmedicasdash.netlify.app/api/patient/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -26,7 +26,7 @@ const PatientDetailsModal = () => {
     const GetDetails = async (patientId: string) => {
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:4321/api/patient/${patientId}`);
+            const response = await fetch(`https://citasmedicasdash.netlify.app/api/patient/${patientId}`);
 
             if (!response.ok) {
                 throw new Error("Response error");

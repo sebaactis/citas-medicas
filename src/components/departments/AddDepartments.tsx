@@ -19,7 +19,7 @@ export default function AddDeparments() {
                 name: department
             }
 
-            const response = await fetch("http://localhost:4321/api/department/create", {
+            const response = await fetch("https://citasmedicasdash.netlify.app/api/department/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

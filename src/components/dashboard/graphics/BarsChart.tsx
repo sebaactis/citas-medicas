@@ -34,7 +34,7 @@ export default function BarsChart() {
 
 
   const getChartInfo = async () => {
-    const response = await fetch("http://localhost:4321/api/appointment/groupdepartment")
+    const response = await fetch("https://citasmedicasdash.netlify.app/api/appointment/groupdepartment")
     const info = await response.json();
     setChartData(info);
   }
