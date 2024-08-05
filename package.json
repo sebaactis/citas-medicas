@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && prisma generate && astro build",
+    "build": "prisma generate && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.1",
