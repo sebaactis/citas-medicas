@@ -16,7 +16,7 @@ export default function MedicinaMain() {
 
         try {
             const response = await fetch(
-                `http://localhost:4321/api/medicine/medicines?page=${page}&limit=${limit}&pagination=${pagination}`,
+                `https://citas-medicas-dash.vercel.app/api/medicine/medicines?page=${page}&limit=${limit}&pagination=${pagination}`,
             );
             const data = await response.json();
             setMedicines(data.medicines);
