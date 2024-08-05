@@ -1,16 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres.gyuikvvjrothumjbfknz:jio6IhMlGRqT684y@aws-0-sa-east-1.pooler.supabase.com:5432/postgres"
+  url      = env("DATABASE_URI")
 }
 
 model Patient {
