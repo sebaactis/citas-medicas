@@ -83,7 +83,7 @@ export function PatientsList() {
                 </TableBody>
             </Table>}
 
-            <div>
+            <div className="pb-10 md:pb-0">
                 <Pagination className="dark:text-white">
                     <PaginationContent>
                         <PaginationItem>

@@ -6,9 +6,11 @@ import ThemeToggle from "./ThemeToggle";
 <nav
     class="bg-slate-100/90 dark:bg-slate-600/95 flex justify-between items-center gap-1"
 >
-    <section class="flex items-center gap-1">
-        <img src="../../public/logo.png" class="w-20 ml-5" />
-        <p class="font-bold text-red-400 text-3xl">Hospitality</p>
+    <section>
+        <a class="flex items-center gap-1" href="/">
+            <img src="../../public/logo.png" class="w-14 md:w-20 ml-5" />
+            <p class="font-bold text-red-400 text-3xl">Hospitality</p>
+        </a>
     </section>
     <section class="flex items-center gap-5 mr-10">
         <MenuNavbar client:load />

@@ -1,5 +1,5 @@
 ---
-import { Separator } from "@/components/ui/separator";
+
 import type { Item } from "@/lib/types";
 import SideBarList from "./SideBarList.astro";
 
@@ -40,22 +40,7 @@ const items: Item[] = [
         link: "/medicine",
     },
 ];
-
-const itemsSetting: Item[] = [
-    {
-        icon: "SettingIcon",
-        title: "Settings",
-        link: "/settings",
-    },
-    {
-        icon: "HelpIcon",
-        title: "Help",
-        link: "/help",
-    },
-];
 ---
-<aside class="bg-slate-100/90 dark:bg-slate-600/95 md:flex flex-col gap-10 pt-10 hidden h-[80rem]">
+<aside class="bg-slate-100/90 dark:bg-slate-600/95 md:flex flex-col gap-10 pt-10 hidden h-[74rem]">
     <SideBarList list={items} />
-    <Separator />
-    <SideBarList list={itemsSetting} />
 </aside>
