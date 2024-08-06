@@ -13,7 +13,6 @@ export default function MedicinaMain() {
 
     const getMedicines = async (page = 1, limit = 6, pagination = true) => {
         setIsLoading(true);
-
         try {
             const response = await fetch(
                 `https://citasmedicasdash.netlify.app/api/medicine/medicines?page=${page}&limit=${limit}&pagination=${pagination}`,
@@ -26,7 +25,6 @@ export default function MedicinaMain() {
         } finally {
             setIsLoading(false);
         }
-
     }
 
     useEffect(() => {

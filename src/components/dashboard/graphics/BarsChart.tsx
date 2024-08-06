@@ -44,7 +44,7 @@ export default function BarsChart() {
   }, [])
 
   return (
-    <Card className="w-full h-[24.05rem] xl:h-[31.5rem] 2xl:h-[24.05rem]">
+    <Card className="w-full h-[26.05rem] xl:h-[31.5rem] 2xl:h-[24.05rem]">
       <CardHeader>
         <CardTitle>Appointments by departments</CardTitle>
         <CardDescription>Historic</CardDescription>
@@ -60,7 +60,7 @@ export default function BarsChart() {
               axisLine={false}
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <ChartLegend />
+            <ChartLegend margin={{"top": 10}}/>
             <Bar
               dataKey="Quantity"
               fill="var(--color-desktop)"

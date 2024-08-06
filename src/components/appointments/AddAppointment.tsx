@@ -113,7 +113,7 @@ export function AddAppointment() {
   }
 
   return (
-    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] ml-10 md:ml-0 2xl:w-[40.625rem] h-[40.375rem] xl:h-[47rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
+    <section className="bg-slate-100/90 dark:bg-slate-600/95 w-[20.625rem] ml-8 md:ml-0 2xl:w-[40.625rem] h-[40.375rem] xl:h-[47rem] 2xl:h-[50rem] rounded-md shadow-2xl shadow-slate-500 dark:shadow-slate-700">
       <h3 className="text-center text-2xl font-bold my-10 dark:text-white uppercase">Add appointment</h3>
       <form className="flex flex-col gap-2 xl:gap-10 items-center" onSubmit={handleSubmit}>
         <Calendar

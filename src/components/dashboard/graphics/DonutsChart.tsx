@@ -47,7 +47,7 @@ export default function DonutsChart() {
       <CardContent className="flex-1 pb-0 justify-center items-center">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square xl:h-[15rem] 2xl:h-[18.75rem]"
+          className="mx-auto aspect-square h-[15rem] 2xl:h-[18.75rem]"
         >
           <PieChart>
             <ChartTooltip
