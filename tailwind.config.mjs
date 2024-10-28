@@ -12,6 +12,6 @@ module.exports = {
         foreground: 'var(--color-foreground)',
         'muted-foreground': 'var(--color-muted-foreground)',
       },
-    },
+    }
   },
 };
